@@ -27,6 +27,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	//-----------------------------------------
 	//一番最初に１回だけやる処理をここに書く
 
+	Input::Init();
+
 	//-----------------------------------------
 
 	//ゲームメインループ
@@ -42,6 +44,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 			//画面に表示されたものを初期化
 			ClearDrawScreen();
+			Input::Step();
 
 			//-----------------------------------------
 			//ここからゲームの本体を書くことになる
