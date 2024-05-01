@@ -3,8 +3,8 @@
 #include"Title/Title.h"
 #include"Play/Play.h"
 #include"Result/Result.h"
-
-SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;
+#include"../Character/Character.h"
+SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_PLAY;
 
 Title title;
 Play play;
@@ -40,7 +40,6 @@ void Scene()
 
 		//プレイシーン初期化
 	case SCENE_ID_INIT_PLAY:
-
 		play.Init();
 
 		break;

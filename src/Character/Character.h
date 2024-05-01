@@ -3,11 +3,14 @@
 class Character
 {
 private:
-	int x, y, h, w, handle, Gravity_Speed;
+	int  h, w, handle;
+	float x, y,Next_x,Next_y, Gravity_Speed;
 public:
 	void Init();
 	void Move();
 	void Gravity();
 	void Draw();
+	void Update();
 	void Step();
 };
+extern Character character;
