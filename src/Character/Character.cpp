@@ -8,35 +8,35 @@ const float GRAVITY_SPEED = 1;		//重力
 const float GRAVITY_LIMIT = 5;		//重力の最大値
 void Character::Init()		//初期化
 {
-	x = 0.0f;
-	y = 0.0f;
-	h = 64;
-	w = 32;
-	Next_x = x;
-	Next_y = y;
-	Gravity_Speed = 0.0f;
-	handle = LoadGraph(CHARACTER_PATH);
+	x = 0.0f;			//X座標
+	y = 0.0f;			//Y座標
+	h = 64;				//縦幅
+	w = 32;				//横幅
+	Next_x = x;			//X座標の前のフレームを取りたい
+	Next_y = y;			//Y座標の前のフレームを取りたい
+	Gravity_Speed = 0.0f;//重力
+	handle = LoadGraph(CHARACTER_PATH);		//ロード
 }
 void Character::Move()		//移動処理
 {
-	if (Input::Key::Keep(KEY_INPUT_A))
+	if (Input::Key::Keep(KEY_INPUT_A))	//Aキーを押したらtrue
 	{
 		Next_x -= MOVE_SPEED;
 	}
-	if (Input::Key::Keep(KEY_INPUT_D))
+	if (Input::Key::Keep(KEY_INPUT_D)) //Dキーを押したらtrue
 	{
 		Next_x += MOVE_SPEED;
 	}
 }
 void Character::Gravity()	//重力処理
 {
-	Gravity_Speed += GRAVITY_SPEED;
-	if (Gravity_Speed > GRAVITY_LIMIT)
+	Gravity_Speed += GRAVITY_SPEED;		//重力を入れる
+	if (Gravity_Speed > GRAVITY_LIMIT)	//GRAVITY_LIMITを超えるとtrue
 	{
 		Gravity_Speed = GRAVITY_LIMIT;
 		Next_y += Gravity_Speed;
 	}
-	else
+	else	//GRAVITY_LIMITを超えていない限りtrue
 	{
 		Next_y += Gravity_Speed;
 	}
@@ -47,12 +47,13 @@ void Character::Draw()		//描画
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Next_x = %0.2f", Next_x);
 	DrawFormatString(0, 15, GetColor(255, 255, 255), "Next_y = %0.2f", Next_y);
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
-	DrawRotaGraph(x, y, 1.0, 0.0, handle, true);
+
+	DrawRotaGraph(x, y, 1.0, 0.0, handle, true);		//キャラクター描画
 }
-void Character::Update()
-{
-	x = Next_x;
-	y = Next_y;
+void Character::Update()		//アップデート
+{	
+	x = Next_x;		//計算した値を入れる
+	y = Next_y;		//計算した値を入れる
 }
 void Character::Step()		//ここにまとめる
 {
