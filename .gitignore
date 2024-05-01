@@ -1,0 +1,6 @@
+# srcフォルダのみgitで管理
+/*
+!/src/
+!/data/
+!/ゲームまとめ
+!.gitignore
