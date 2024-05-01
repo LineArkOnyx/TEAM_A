@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Character\Character.cpp" />
     <ClCompile Include="src\FrameRate\FrameRate.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="src\Sound\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Character\Character.h" />
     <ClInclude Include="src\FrameRate\FrameRate.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\MathPlus\MathPlus.h" />

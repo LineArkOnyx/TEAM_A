@@ -46,10 +46,8 @@ void Scene()
 		break;
 		//プレイシーン通常処理
 	case SCENE_ID_LOOP_PLAY:
-
 		play.Step();
 		play.Draw();
-
 		break;
 		//プレイシーン終了処理
 	case SCENE_ID_FIN_PLAY:
