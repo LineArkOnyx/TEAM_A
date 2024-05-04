@@ -2,7 +2,7 @@
 #include"Character.h"
 #include"../Input/Input.h"
 Character character;
-const char CHARACTER_PATH[] = { "a" };		//ここにキャラのパスを入れる
+const char CHARACTER_PATH[] = { "data/play/仮player64×32.png" };		//ここにキャラのパスを入れる
 const float MOVE_SPEED = 5;	//キャラの移動スピード
 const float GRAVITY_SPEED = 1;		//重力
 const float GRAVITY_LIMIT = 5;		//重力の最大値
@@ -43,12 +43,12 @@ void Character::Gravity()	//重力処理
 }	
 void Character::Draw()		//描画
 {
-	DrawBox(x, y, x + w, y + h, GetColor(255, 255, 255),false);
+	DrawBox(x, y, x + w, y + h, GetColor(0, 0, 255),false);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Next_x = %0.2f", Next_x);
 	DrawFormatString(0, 15, GetColor(255, 255, 255), "Next_y = %0.2f", Next_y);
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
 
-	DrawRotaGraph(x, y, 1.0, 0.0, handle, true);		//キャラクター描画
+	DrawRotaGraph(x+w/2, y+h/2, 1.0, 0.0, handle, true);		//キャラクター描画
 }
 void Character::Update()		//アップデート
 {	

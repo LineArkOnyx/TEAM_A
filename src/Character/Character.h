@@ -12,5 +12,7 @@ public:
 	void Draw();		//描画
 	void Update();		//アップデート
 	void Step();		//ここにまとめる
+	int GetPosX() { return x; }
+	int GetPosY() { return y; }
 };
 extern Character character;
