@@ -4,7 +4,7 @@
 #include"Play/Play.h"
 #include"Result/Result.h"
 #include"../Character/Character.h"
-SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_PLAY;
+SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_RESULT;
 
 Title title;
 Play play;

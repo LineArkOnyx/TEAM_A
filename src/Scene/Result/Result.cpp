@@ -1,6 +1,7 @@
 #include"DxLib.h"
 #include"Result.h"
 #include"../Scene.h"
+#include "../../Input/Input.h"
 
 //‰Šú‰»
 void Result::Init()
@@ -13,13 +14,18 @@ void Result::Init()
 //’Êíˆ—
 void Result::Step()
 {
+	m_hndl = LoadGraph("data/GameOver/‰¼Gameover.png");
 
+	if (Input::Key::Push(KEY_INPUT_RETURN) != 0)
+		g_CurrentSceneID = SCENE_ID_FIN_RESULT;
 
 }
 
 //•`‰æˆ—
 void Result::Draw()
 {
+	DrawGraph(0, 0, m_hndl, true);
+	DrawFormatString(0, 0, GetColor(0, 255, 255), "Push Enter Key");
 
 }
 
