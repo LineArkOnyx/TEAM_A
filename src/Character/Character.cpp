@@ -14,7 +14,7 @@ const int JUNPPOWER = 22;
 void Character::Init()		//初期化
 {
 	x = 300.0f;			//X座標
-	y = 0.0f;			//Y座標
+	y = 800.0f;			//Y座標
 	h = 64;				//縦幅
 	w = 32;				//横幅
 	Next_x = x;			//X座標の前のフレームを取りたい
@@ -23,6 +23,7 @@ void Character::Init()		//初期化
 	ScreenX = 0.0f;
 	ScreenY = 0.0f;
 	handle = LoadGraph(CHARACTER_PATH);		//ロード
+	JunpFrag = false;
 }
 void Character::Move()		//移動処理
 {
@@ -37,12 +38,15 @@ void Character::Move()		//移動処理
 }
 void Character::Junp()
 {
-	if (Input::Key::Push(KEY_INPUT_W))
+	if (JunpFrag == false)
 	{
-
-		Gravity_Speed -= JUNPPOWER;
-		
+		if (Input::Key::Push(KEY_INPUT_W))
+		{
+			Gravity_Speed -= JUNPPOWER;
+			JunpFrag = true;
+		}
 	}
+	
 }
 void Character::Gravity()	//重力処理
 {
@@ -63,6 +67,7 @@ void Character::Draw()		//描画
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Next_x = %0.2f", Next_x);
 	DrawFormatString(0, 15, GetColor(255, 255, 255), "Next_y = %0.2f", Next_y);
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
+	DrawFormatString(0, 75, GetColor(255, 255, 255), "JunpFrag = %d", JunpFrag);
 
 	DrawRotaGraph(x+w/2- ScreenX, y+h/2- ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
 }
@@ -80,7 +85,7 @@ void Character::Step()		//ここにまとめる
 {
 	Move();
 	Gravity();
-	Junp();
+	/*Junp();*/
 	StepScreen();
 	playSceen.Step();
 	Update();

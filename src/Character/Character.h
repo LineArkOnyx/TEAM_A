@@ -5,6 +5,7 @@ class Character
 private:
 	int  h, w, handle;
 	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY;
+	bool JunpFrag;
 public:
 	void Init();		//‰Šú‰»
 	void Move();		//ˆÚ“®ˆ—
@@ -30,5 +31,6 @@ public:
 	int SetNextPosY(int a) { Next_y = a; return Next_y; }
 	int GetHitSquareX() { return HitSquareX; }
 	int GetHitSquareY() { return HitSquareY; }
+	int SetJunpFrag() { JunpFrag = false; return JunpFrag; }
 };
 extern Character character;

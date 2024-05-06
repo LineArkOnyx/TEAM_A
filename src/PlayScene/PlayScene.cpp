@@ -5,24 +5,27 @@
 #include"../MathPlus/MathPlus.h"
 const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
+const int SQUARE_Y_MAX = 27;	//どこまで当たり判定を取るか
+const int SQUARE_Y_LOWEST = 1;	//どこまで当たり判定を取るか
 PlaySceen playSceen;
 void PlaySceen::Character_Hit_Map()
 {
 	character.StepHitSquare();
 	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
-		////配列を超えたら
-		//if (character.GetPosX() > 28)
-		//	continue;
-		////配列を超えたら
-		//if (character.GetPosY() < 1)
-		//	continue;
+		//配列を超えたら
+		if (character.GetHitSquareY() > SQUARE_Y_MAX)
+			continue;
+		//配列を超えたら
+		if (character.GetHitSquareY() < SQUARE_Y_LOWEST)
+			continue;
 		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			// ★ここを考える
 				// どの方向に進んでいたかチェック
 				// ※Playerクラスに進む方向をチェックする関数を準備しています。
-
+			DrawFormatString(0, 48, GetColor(255, 255, 255), "StepHitSquareY=%d", character.GetHitSquareY());
+			DrawFormatString(0, 64, GetColor(255, 255, 255), "StepHitSquareX=%d", character.GetHitSquareX());
 			bool dirArray[4] = { false,false,false,false };
 			character.GetMoveDirection(dirArray);
 			// ★ここを考える
@@ -70,11 +73,11 @@ void PlaySceen::Character_Hit_Map()
 	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
 		//配列を超えたら
-		//if (character.GetPosX() > 28)
-		//	continue;
+		if (character.GetHitSquareY() > SQUARE_Y_MAX)
+			continue;
 		//配列を超えたら
-		//if (character.GetPosY() < 1)
-		//	continue;
+		if (character.GetHitSquareY() < SQUARE_Y_LOWEST)
+			continue;
 		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			// ★ここを考える
@@ -115,8 +118,11 @@ void PlaySceen::Character_Hit_Map()
 					if (dirArray[1]) {
 						// ★ここを考える
 						// めり込み量を計算する
+						character.SetJunpFrag();	//着地したらジャンプできるようにする
+						character.Junp();			//着地してないとジャンプできない
 						int overlap = Ay + Ah - By;
 						character.SetNextPosY(Ay - overlap);
+						
 					}
 				}
 			}
