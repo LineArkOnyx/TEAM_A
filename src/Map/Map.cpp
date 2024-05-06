@@ -1,13 +1,19 @@
 #include"DxLib.h"
 #include"Map.h"
 #include"../Character/Character.h"
-int MapHandle[4] = { 0 };									//マップチップデータを入れる配列
+const int MapPathMax = 25;
+int MapHandle[MapPathMax] = { -1 };									//マップチップデータを入れる配列
 int MapChipData[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];		//一つ目のマップ
 Map map;
 void Map::Init()
 {
+	for (int i = 0; i < MapHandle[MapPathMax]; i++)
+	{
+		MapHandle[i] = -1;
+	}
 	Load();
-	LoadDivGraph("Data/Map/MAP正規.png", 4, 2, 2, 32, 32, MapHandle);
+	LoadDivGraph("Data/bloak/block_32.png", 25, 5, 5, 32, 32, MapHandle);
+	
 }
 void Map::Load()
 {
@@ -47,9 +53,10 @@ void Map::Draw()
 	{
 		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
 		{
-			{
-				DrawGraph(x * 32 - character.GetPosX(), y * 32 - character.GetPosY(), MapHandle[MapChipData[y][x]], true);
-			}
+			if (MapChipData[y][x] == -1)
+				continue;
+			DrawGraph(x * 32- character.GetScreenX(), y * 32- character.GetScreenY(), MapHandle[MapChipData[y][x]], true);
+		
 		}
 	}
 }
