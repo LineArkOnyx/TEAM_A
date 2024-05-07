@@ -12,7 +12,7 @@ void Map::Init()
 		MapHandle[i] = -1;
 	}
 	Load();
-	LoadDivGraph("Data/bloak/block_32.png", 25, 5, 5, 32, 32, MapHandle);
+	LoadDivGraph("Data/bloak/bloak.png", 25, 5, 5, 32, 32, MapHandle);
 	
 }
 void Map::Load()
