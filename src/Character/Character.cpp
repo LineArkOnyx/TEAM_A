@@ -11,6 +11,7 @@ const float MOVE_SPEED = 5;	//キャラの移動スピード
 const float GRAVITY_SPEED = 1;		//重力
 const float GRAVITY_LIMIT = 8;		//重力の最大値
 const float JUNPPOWER = 26;
+//const float CONBER
 void Character::Init()		//初期化
 {
 	x = 300.0f;			//X座標
@@ -25,7 +26,7 @@ void Character::Init()		//初期化
 	handle = LoadGraph(CHARACTER_PATH);		//ロード
 	JunpFrag = false;
 	DebugFrag = false;
-	
+	ladderActiv = false;
 	turn = true;
 	status = PL_NORMAL;
 }
@@ -55,7 +56,18 @@ void Character::Move()		//移動処理
 				status = PL_MOVE;
 			}
 		}
+		if (ladderActiv == true)
+		{
+			if (Input::Key::Keep(KEY_INPUT_W))	//Aキーを押したらtrue
+			{
+				Next_y -= MOVE_SPEED;
+			}
+			if (Input::Key::Keep(KEY_INPUT_S))	//Aキーを押したらtrue
+			{
+				Next_y += MOVE_SPEED;
+			}
 
+		}
 		//移動状態で離したら待機状態になる
 		if(status == PL_MOVE)
 		{
@@ -128,15 +140,23 @@ void Character::Gravity()	//重力処理
 {
 	if (DebugFrag == false)
 	{
-		Gravity_Speed += GRAVITY_SPEED;		//重力を入れる
-		if (Gravity_Speed > GRAVITY_LIMIT)	//GRAVITY_LIMITを超えるとtrue
+		if (ladderActiv == false)
 		{
-			Gravity_Speed = GRAVITY_LIMIT;
-			Next_y += Gravity_Speed;
+			Gravity_Speed += GRAVITY_SPEED;		//重力を入れる
+			if (Gravity_Speed > GRAVITY_LIMIT)	//GRAVITY_LIMITを超えるとtrue
+			{
+				Gravity_Speed = GRAVITY_LIMIT;
+				Next_y += Gravity_Speed;
+			}
+			else	//GRAVITY_LIMITを超えていない限りtrue
+			{
+				Next_y += Gravity_Speed;
+			}
 		}
-		else	//GRAVITY_LIMITを超えていない限りtrue
+		else
 		{
-			Next_y += Gravity_Speed;
+			ladderActiv = false;
+			Gravity_Speed = 0.0f;
 		}
 	}
 	
@@ -149,6 +169,9 @@ void Character::Draw()		//描画
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
 	DrawFormatString(0, 75, GetColor(255, 255, 255), "JunpFrag = %d", JunpFrag); 
 	DrawFormatString(0, 90, GetColor(255, 255, 255), "DebugFrag = %d", DebugFrag);
+	DrawFormatString(0, 120, GetColor(255, 255, 255), "ScreenX = %0.2f", ScreenX);
+	DrawFormatString(0, 135, GetColor(255, 255, 255), "ScreenY = %0.2f", ScreenY);
+	DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv);
 	DrawRotaGraph(x+w/2- ScreenX, y+h/2- ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
 
 	anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
@@ -179,7 +202,7 @@ void Character::Step()		//ここにまとめる
 void Character::StepScreen()
 {
 	ScreenX = x - SCREEN_SIZE_X / 2;
-	ScreenY = y - SCREEN_SIZE_Y / 2;						//Y座標のスクリーンY座標
+	ScreenY = 239/*y - SCREEN_SIZE_Y / 2*/;						//Y座標のスクリーンY座標
 }
 void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 {
@@ -200,7 +223,14 @@ void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 		_dirArray[0] = true;
 	}
 }
-
+void Character::UnderConveyorPower()
+{
+	character.Next_x-= 3;
+}
+void Character::UpConveyorPower()
+{
+	character.Next_x += 3;
+}
 void Character::ChangeAnima()
 {
 	switch (status)

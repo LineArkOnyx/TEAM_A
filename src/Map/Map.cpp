@@ -1,7 +1,7 @@
 #include"DxLib.h"
 #include"Map.h"
 #include"../Character/Character.h"
-const int MapPathMax = 25;
+const int MapPathMax = 60;
 int MapHandle[MapPathMax] = { -1 };									//マップチップデータを入れる配列
 int MapChipData[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];		//一つ目のマップ
 Map map;
@@ -12,7 +12,7 @@ void Map::Init()
 		MapHandle[i] = -1;
 	}
 	Load();
-	LoadDivGraph("Data/bloak/bloak.png", 25, 5, 5, 32, 32, MapHandle);
+	LoadDivGraph("Data/bloak/bloak.png", MapPathMax, 10, 6, 32, 32, MapHandle);
 	
 }
 void Map::Load()

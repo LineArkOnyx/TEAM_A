@@ -22,8 +22,8 @@ void PlaySceen::Character_Hit_Map()
 		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			// ★ここを考える
-				// どの方向に進んでいたかチェック
-				// ※Playerクラスに進む方向をチェックする関数を準備しています。
+			// どの方向に進んでいたかチェック
+			// ※Playerクラスに進む方向をチェックする関数を準備しています。
 			DrawFormatString(0, 48, GetColor(255, 255, 255), "StepHitSquareY=%d", character.GetHitSquareY());
 			DrawFormatString(0, 64, GetColor(255, 255, 255), "StepHitSquareX=%d", character.GetHitSquareX());
 			bool dirArray[4] = { false,false,false,false };
@@ -41,7 +41,7 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-			if (MapChipData[y][x] == -1)
+			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 46)
 				continue;
 			{
 				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
@@ -100,7 +100,7 @@ void PlaySceen::Character_Hit_Map()
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
 
-			if (MapChipData[y][x] == -1)
+			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46)
 				continue;
 			{
 				Ay = character.GetNextPosY();
@@ -110,9 +110,15 @@ void PlaySceen::Character_Hit_Map()
 					if (dirArray[0]) {
 						// ★ここを考える
 						// めり込み量を計算する
+						character.SetGravitySpeed(0.0);
 						int overlap = By + Bh - Ay;
 						character.SetNextPosY((Ay + overlap));
-						character.SetGravitySpeed(0.0f);
+						if (MapChipData[y][x] == 47 || MapChipData[y][x] == 48 || MapChipData[y][x] == 49)
+						{
+							character.UpConveyorPower();
+						}
+						
+						
 					}
 					// 右方向の修正
 					//マリオの右側
@@ -127,11 +133,53 @@ void PlaySceen::Character_Hit_Map()
 						character.Junp();			//着地してないとジャンプできない
 						int overlap = Ay + Ah - By;
 						character.SetNextPosY(Ay - overlap);
+						if (MapChipData[y][x] == 47 || MapChipData[y][x] == 48 || MapChipData[y][x] == 49)
+						{
+							character.UnderConveyorPower();
+						}
 
 						
 					}
 				}
 			}
+		}
+	}
+	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
+	{
+		//配列を超えたら
+		if (character.GetHitSquareY() > SQUARE_Y_MAX)
+			continue;
+		//配列を超えたら
+		if (character.GetHitSquareY() < SQUARE_Y_LOWEST)
+			continue;
+		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
+		{
+			
+			// ★ここを考える
+			// 矩形の当たり判定用のデータを準備
+			// プレイヤーの情報
+
+			int Ax = character.GetPosX();
+			int Ay = character.GetPosY();
+			int Aw = character.GetW();
+			int Ah = character.GetH();
+
+			// オブジェクトの情報
+			int Bx = x * 32;
+			int By = y * 32;
+			int Bw = MAPCHIP_SIZW;
+			int Bh = MAPCHIP_SIZH;
+			/*if (MapChipData[y][x] == -1)
+				continue;*/
+			DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 0, 255), false);
+			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
+			{
+				if (MapChipData[y][x] == 46)
+				{
+					character.SetladderActiv(true);
+				}
+			}
+			
 		}
 	}
 }
