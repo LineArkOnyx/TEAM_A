@@ -112,6 +112,7 @@ void PlaySceen::Character_Hit_Map()
 						// めり込み量を計算する
 						int overlap = By + Bh - Ay;
 						character.SetNextPosY((Ay + overlap));
+						character.SetGravitySpeed(0.0f);
 					}
 					// 右方向の修正
 					//マリオの右側
@@ -126,7 +127,6 @@ void PlaySceen::Character_Hit_Map()
 					}
 				}
 			}
-
 		}
 	}
 }
