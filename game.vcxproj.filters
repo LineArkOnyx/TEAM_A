@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\Character">
       <UniqueIdentifier>{940bfd97-c1a3-4f25-84e9-a61908a76da6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\NewFilter1">
+      <UniqueIdentifier>{e2ed9c87-c17a-48fd-828d-3fddf01aab3b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -72,6 +75,12 @@
     <ClCompile Include="src\Character\Character.cpp">
       <Filter>ソース ファイル\Character</Filter>
     </ClCompile>
+    <ClCompile Include="src\PlayScene\PlayScene.cpp">
+      <Filter>ソース ファイル\NewFilter1</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Map\Map.cpp">
+      <Filter>ソース ファイル\NewFilter1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FrameRate\FrameRate.h">
@@ -100,6 +109,12 @@
     </ClInclude>
     <ClInclude Include="src\Character\Character.h">
       <Filter>ソース ファイル\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PlayScene\PlayScene.h">
+      <Filter>ソース ファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Map\Map.h">
+      <Filter>ソース ファイル\NewFilter1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

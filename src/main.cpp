@@ -2,6 +2,8 @@
 
 #include"DxLib.h"	//DXライブラリのインクルード
 #include"Scene/Scene.h"
+#include "Scene/Play/Play.h"
+#include "Scene/Result/Result.h"
 
 // Win32アプリケーションは WinMain関数 から始まる
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
