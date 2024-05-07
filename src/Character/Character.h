@@ -1,11 +1,26 @@
 #pragma once
 #include"DxLib.h"
+
+//プレイヤーの状態 : 岡山産
+enum PL_STATUS
+{
+	PL_NORMAL,
+	PL_MOVE,
+	PL_JUMP,
+};
+
 class Character
 {
 private:
 	int  h, w, handle;
 	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY;
 	bool JunpFrag,DebugFrag;
+
+	//以下岡山産
+	bool turn;	//左右の反転
+	PL_STATUS status;	//プレイヤーの状態
+	int animaHandle;
+
 public:
 	void Init();		//初期化
 	void Move();		//移動処理
@@ -35,5 +50,9 @@ public:
 	int GetHitSquareX() { return HitSquareX; }
 	int GetHitSquareY() { return HitSquareY; }
 	int SetJunpFrag() { JunpFrag = false; return JunpFrag; }
+
+	PL_STATUS GetStatus() { return status; }
+	void SetStatus(PL_STATUS set) { status = set; }
+	void ChangeAnima();
 };
 extern Character character;

@@ -1,10 +1,11 @@
 #pragma once
 #include"../FrameRate/FrameRate.h"
 #include"../Input/Input.h"
+#include"../Animation/Animation.h"
 
 // define
-#define	SCREEN_SIZE_X	800//1920	// X方向の画面サイズを指定
-#define	SCREEN_SIZE_Y	600//1080	// Y方向の画面サイズを指定
+#define	SCREEN_SIZE_X	1280//1920	// X方向の画面サイズを指定
+#define	SCREEN_SIZE_Y	720//1080	// Y方向の画面サイズを指定
 
 enum SCENE_ID
 {

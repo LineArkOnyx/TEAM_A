@@ -117,12 +117,17 @@ void PlaySceen::Character_Hit_Map()
 					// 右方向の修正
 					//マリオの右側
 					if (dirArray[1]) {
+						if (character.GetStatus() == PL_JUMP)
+						{
+							character.SetStatus(PL_NORMAL);
+						}
 						// ★ここを考える
 						// めり込み量を計算する
 						character.SetJunpFrag();	//着地したらジャンプできるようにする
 						character.Junp();			//着地してないとジャンプできない
 						int overlap = Ay + Ah - By;
 						character.SetNextPosY(Ay - overlap);
+
 						
 					}
 				}

@@ -25,6 +25,9 @@ void Character::Init()		//初期化
 	handle = LoadGraph(CHARACTER_PATH);		//ロード
 	JunpFrag = false;
 	DebugFrag = false;
+	
+	turn = true;
+	status = PL_NORMAL;
 }
 void Character::Move()		//移動処理
 {
@@ -33,10 +36,33 @@ void Character::Move()		//移動処理
 		if (Input::Key::Keep(KEY_INPUT_A))	//Aキーを押したらtrue
 		{
 			Next_x -= MOVE_SPEED;
+
+			turn = false;
+
+			if(status!=PL_JUMP)
+			{
+				status = PL_MOVE;
+			}
 		}
 		if (Input::Key::Keep(KEY_INPUT_D)) //Dキーを押したらtrue
 		{
 			Next_x += MOVE_SPEED;
+
+			turn = true;
+
+			if (status != PL_JUMP)
+			{
+				status = PL_MOVE;
+			}
+		}
+
+		//移動状態で離したら待機状態になる
+		if(status == PL_MOVE)
+		{
+			if (Input::Key::Release(KEY_INPUT_A) || Input::Key::Release(KEY_INPUT_D))
+			{
+				status = PL_NORMAL;
+			}
 		}
 	}
 }
@@ -69,6 +95,8 @@ void Character::Junp()
 			{
 				Gravity_Speed -= JUNPPOWER;
 				JunpFrag = true;
+
+				status = PL_JUMP;
 			}
 		}
 	}
@@ -122,6 +150,8 @@ void Character::Draw()		//描画
 	DrawFormatString(0, 75, GetColor(255, 255, 255), "JunpFrag = %d", JunpFrag); 
 	DrawFormatString(0, 90, GetColor(255, 255, 255), "DebugFrag = %d", DebugFrag);
 	DrawRotaGraph(x+w/2- ScreenX, y+h/2- ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
+
+	anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
 }
 void Character::Update()		//アップデート
 {	
@@ -143,6 +173,8 @@ void Character::Step()		//ここにまとめる
 	StepScreen();
 	playSceen.Step();
 	Update();
+
+	ChangeAnima();
 }
 void Character::StepScreen()
 {
@@ -166,5 +198,26 @@ void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 	// 左方向のチェック
 	if (Next_y < y) {
 		_dirArray[0] = true;
+	}
+}
+
+void Character::ChangeAnima()
+{
+	switch (status)
+	{
+	case PL_NORMAL:
+		anime.SetType(ANIME_NORMAL, &animaHandle);
+		break;
+
+	case PL_MOVE:
+		anime.SetType(ANIME_MOVE, &animaHandle);
+		break;
+
+	case PL_JUMP:
+		anime.SetType(ANIME_JUMP, &animaHandle);
+		break;
+
+	default:
+		break;
 	}
 }

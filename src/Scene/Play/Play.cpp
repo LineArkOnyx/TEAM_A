@@ -10,6 +10,8 @@ void Play::Init()
 	character.Init();
 	//ƒ}ƒbƒv‚Ì‰Šú‰»
 	map.Init();
+
+	anime.Init();
 	//’Êíˆ—‚ÖˆÚ“®
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
 }
@@ -18,6 +20,7 @@ void Play::Init()
 void Play::Step()
 {
 	character.Step();
+	anime.Step();
 }
 
 //•`‰æˆ—
