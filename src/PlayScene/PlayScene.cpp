@@ -104,7 +104,7 @@ void PlaySceen::Character_Hit_Map()
 				continue;
 			{
 				Ay = character.GetNextPosY();
-				Ax = character.GetPosX();
+				Ax = character.GetNextPosX();
 				if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 				{
 					if (dirArray[0]) {
