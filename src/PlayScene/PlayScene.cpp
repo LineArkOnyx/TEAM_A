@@ -169,13 +169,17 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-			/*if (MapChipData[y][x] == -1)
-				continue;*/
+
+			if (MapChipData[y][x] == -1)
+				continue; 
+
 			DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 0, 255), false);
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 			{
+				//は仕事の当たり判定
 				if (MapChipData[y][x] == 46)
-				{
+				{	
+					//梯子オンフラグを真に
 					character.SetladderActiv(true);
 				}
 			}

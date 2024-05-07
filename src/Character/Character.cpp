@@ -56,6 +56,7 @@ void Character::Move()		//移動処理
 				status = PL_MOVE;
 			}
 		}
+		//	階段がオンなら入る
 		if (ladderActiv == true)
 		{
 			if (Input::Key::Keep(KEY_INPUT_W))	//Aキーを押したらtrue
@@ -140,6 +141,7 @@ void Character::Gravity()	//重力処理
 {
 	if (DebugFrag == false)
 	{
+		//梯子フラグが偽なら重力を消す
 		if (ladderActiv == false)
 		{
 			Gravity_Speed += GRAVITY_SPEED;		//重力を入れる
