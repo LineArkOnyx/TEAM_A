@@ -3,6 +3,7 @@
 class Result
 {
 private:
+	int m_hndl;
 
 public:
 	//‰Šú‰»

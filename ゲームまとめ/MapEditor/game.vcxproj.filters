@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\frameRate">
+      <UniqueIdentifier>{baea52cf-16fb-4365-8732-b52b8294ee42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\input">
+      <UniqueIdentifier>{dbdad9ff-2be3-43eb-bf29-53adbe8735b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\mathPlus">
+      <UniqueIdentifier>{5f93a1e3-91d2-4844-b858-2d9608cdf59c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{ceff051e-2946-4772-9e6f-c22300b08f17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\play">
+      <UniqueIdentifier>{447cda04-16b1-4041-b59f-63d0ba0fec34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\title">
+      <UniqueIdentifier>{ded8e4c3-af04-4de6-9226-53399be71625}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\result">
+      <UniqueIdentifier>{ca39c2fc-a433-4df3-ac45-3fa40210c83a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\sound">
+      <UniqueIdentifier>{6d3f3717-090a-48ce-9a50-e1ecbc72a9c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\MapEditor">
+      <UniqueIdentifier>{1d2d8170-790f-452c-b5cb-2cceb72c3292}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FrameRate\FrameRate.cpp">
+      <Filter>ソース ファイル\frameRate</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input\Input.cpp">
+      <Filter>ソース ファイル\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MathPlus\MathPlus.cpp">
+      <Filter>ソース ファイル\mathPlus</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene\Scene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene\Play\Play.cpp">
+      <Filter>ソース ファイル\scene\play</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene\Title\Title.cpp">
+      <Filter>ソース ファイル\scene\title</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene\Result\Result.cpp">
+      <Filter>ソース ファイル\scene\result</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Sound\Sound.cpp">
+      <Filter>ソース ファイル\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapEditor\MapEditor.cpp">
+      <Filter>ソース ファイル\MapEditor</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\FrameRate\FrameRate.h">
+      <Filter>ソース ファイル\frameRate</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Input\Input.h">
+      <Filter>ソース ファイル\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MathPlus\MathPlus.h">
+      <Filter>ソース ファイル\mathPlus</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Scene.h">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Play\Play.h">
+      <Filter>ソース ファイル\scene\play</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Title\Title.h">
+      <Filter>ソース ファイル\scene\title</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Result\Result.h">
+      <Filter>ソース ファイル\scene\result</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sound\Sound.h">
+      <Filter>ソース ファイル\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapEditor\MapEditor.h">
+      <Filter>ソース ファイル\MapEditor</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

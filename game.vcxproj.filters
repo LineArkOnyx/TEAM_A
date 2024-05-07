@@ -37,6 +37,9 @@
     <Filter Include="ソース ファイル\sound">
       <UniqueIdentifier>{6d3f3717-090a-48ce-9a50-e1ecbc72a9c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Character">
+      <UniqueIdentifier>{940bfd97-c1a3-4f25-84e9-a61908a76da6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -66,6 +69,9 @@
     <ClCompile Include="src\Sound\Sound.cpp">
       <Filter>ソース ファイル\sound</Filter>
     </ClCompile>
+    <ClCompile Include="src\Character\Character.cpp">
+      <Filter>ソース ファイル\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FrameRate\FrameRate.h">
@@ -91,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="src\Sound\Sound.h">
       <Filter>ソース ファイル\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Character\Character.h">
+      <Filter>ソース ファイル\Character</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
