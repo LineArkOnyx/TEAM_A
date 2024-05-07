@@ -15,10 +15,14 @@ void MapData::Init()
 	if (ReadFile(MAP_DEFAULT) == 0) {
 		isReadFile = true;
 	}
-	CurrentMCT = MAPCHIP_KUSA;
+	ScreenPosX = 0;
+	ScreenPosY = 0;
+	CurrentMCT = MAPCHIP_BLOCK1;
 	
 }
 // 描画
+
+
 void MapData::Draw()
 {
 	// マップチップの描画
@@ -32,18 +36,21 @@ void MapData::Draw()
 				int mapchipType = m_FileReadMapData[y][x];
 				if (m_FileReadMapData[y][x] != MAPCHIP_NONE) {
 					DrawGraph(x * MAP_SIZE, y * MAP_SIZE, imgHundle[mapchipType], true);
-					switch (m_FileReadMapData[y][x])	// <<Switch
+					switch (m_FileReadMapData[y][x])	// <<focus
 					{
-					case MAPCHIP_BLOCK:
-						DrawBox(x * MAP_SIZE, y * MAP_SIZE, x * MAP_SIZE + MAP_SIZE, y * MAP_SIZE + MAP_SIZE, GetColor(255, 255, 0), true);
+					case MAPCHIP_BLOCK0:
+						DrawBox(x * MAP_SIZE+ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(63, 63, 127), true);
 						break;
-					case MAPCHIP_KUSA:
-						DrawBox(x * MAP_SIZE, y * MAP_SIZE, x * MAP_SIZE + MAP_SIZE, y * MAP_SIZE + MAP_SIZE, GetColor(0, 191, 0), true);
+					case MAPCHIP_BLOCK1:
+						DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(0, 191, 0), true);
+						break;
+					case MAPCHIP_BLOCK2:
+						DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(0, 0, 191), true);
 						break;
 					default:
 						break;
 					}
-					DrawBox(x * MAP_SIZE, y * MAP_SIZE, x * MAP_SIZE + MAP_SIZE, y * MAP_SIZE + MAP_SIZE, GetColor(127, 127, 0), false);
+					DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(127, 127, 0), false);
 				}
 			}
 			else {
@@ -87,6 +94,9 @@ int MapData::ReadFile(const char *FilePath)
 	return 0;
 }
 
+
+
+
 int MapEditor::WriteFile(const char* FilePath)
 {
 	std::ofstream data_file(FilePath);
@@ -111,7 +121,7 @@ int MapEditor::SetMCT(int* MouseX, int* MouseY)
 	if (Input::Mouse::Keep(MOUSE_INPUT_LEFT) || Input::Mouse::Push(MOUSE_INPUT_LEFT)) {
 		for (int y = 0; y < MAP_DATA_Y; y++){
 			for (int x = 0; x < MAP_DATA_X; x++){
-				if (Collision::Rect(x * MAP_SIZE, y * MAP_SIZE, MAP_SIZE, MAP_SIZE, *MouseX, *MouseY, 1, 1)) {
+				if (Collision::Rect(x * MAP_SIZE, y * MAP_SIZE, MAP_SIZE, MAP_SIZE, *MouseX - ScreenPosX, *MouseY - ScreenPosY, 1, 1)) {
 					m_FileReadMapData[y][x] = CurrentMCT;
 				}
 			}
@@ -124,14 +134,16 @@ int MapEditor::SetMCT(int* MouseX, int* MouseY)
 }
 int MapEditor::SelectMCT(int num)
 {
-	switch (num)	// <<Switch
+	switch (num)	// <<focus
 	{
 	case 0:
-		CurrentMCT = MAPCHIP_BLOCK;
+		CurrentMCT = MAPCHIP_BLOCK0;
 		break;
 	case 1:
-		CurrentMCT = MAPCHIP_KUSA;
+		CurrentMCT = MAPCHIP_BLOCK1;
 		break;
+	case 2:
+		CurrentMCT = MAPCHIP_BLOCK2;
 	default:
 		return -1;
 		break;
@@ -143,6 +155,7 @@ MapEditor::MapEditor()
 {
 	controleIndex = CONTROLE_SET_MCT;
 	IndexBuf = 0;
+	
 }
 MapEditor::~MapEditor()
 {
@@ -190,6 +203,19 @@ int MapEditor::Loop(int* MouseX, int* MouseY)
 		}
 		if (Input::Key::Push(KEY_INPUT_S)) {
 			controleIndex = CONTROLE_SAVE_MAP;
+		}
+
+		if (Input::Key::Keep(KEY_INPUT_RIGHT)) {
+			ScreenPosX -= 4;
+		}
+		if (Input::Key::Keep(KEY_INPUT_LEFT)) {
+			ScreenPosX += 4;
+		}
+		if (Input::Key::Keep(KEY_INPUT_DOWN)) {
+			ScreenPosY -= 4;
+		}
+		if (Input::Key::Keep(KEY_INPUT_UP)) {
+			ScreenPosY += 4;
 		}
 
 		break;

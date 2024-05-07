@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\NewFilter1">
       <UniqueIdentifier>{e2ed9c87-c17a-48fd-828d-3fddf01aab3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Animation">
+      <UniqueIdentifier>{ef03181f-42dd-495e-94dc-15975fbb947f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -81,6 +84,9 @@
     <ClCompile Include="src\Map\Map.cpp">
       <Filter>ソース ファイル\NewFilter1</Filter>
     </ClCompile>
+    <ClCompile Include="src\Animation\Animation.cpp">
+      <Filter>ソース ファイル\Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FrameRate\FrameRate.h">
@@ -115,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="src\Map\Map.h">
       <Filter>ソース ファイル\NewFilter1</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation\Animation.h">
+      <Filter>ソース ファイル\Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
