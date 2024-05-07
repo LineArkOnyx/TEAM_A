@@ -29,6 +29,7 @@ public:
 	int SetPosY(int a) { y = a; return y; }
 	int SetNextPosX(int a) { Next_x = a; return Next_x; }
 	int SetNextPosY(int a) { Next_y = a; return Next_y; }
+	int SetGRavitySpeed(int a) { Gravity_Speed = a; return Gravity_Speed; }
 	int GetHitSquareX() { return HitSquareX; }
 	int GetHitSquareY() { return HitSquareY; }
 	int SetJunpFrag() { JunpFrag = false; return JunpFrag; }
