@@ -28,6 +28,7 @@ void Character::Init()		//初期化
 	DebugFrag = false;
 	ladderActiv = false;
 	turn = true;
+	UpJunpTrapFrag = true;
 	status = PL_NORMAL;
 }
 void Character::Move()		//移動処理
@@ -113,7 +114,15 @@ void Character::Junp()
 			}
 		}
 	}
-	
+}
+void Character::UpJunpTrap()
+{
+	//一回しかできない処理
+	if (character.UpJunpTrapFrag == true)
+	{
+		UpJunpTrapFrag = false;
+		Gravity_Speed -= JUNPPOWER;
+	}
 }
 void Character::DebugMove()
 {
@@ -173,7 +182,8 @@ void Character::Draw()		//描画
 	DrawFormatString(0, 90, GetColor(255, 255, 255), "DebugFrag = %d", DebugFrag);
 	DrawFormatString(0, 120, GetColor(255, 255, 255), "ScreenX = %0.2f", ScreenX);
 	DrawFormatString(0, 135, GetColor(255, 255, 255), "ScreenY = %0.2f", ScreenY);
-	DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv);
+	DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv); 
+	DrawFormatString(0, 165, GetColor(255, 255, 255), "UpJunpTrapFrag = %d", UpJunpTrapFrag);
 	DrawRotaGraph(x+w/2- ScreenX, y+h/2- ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
 
 	anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
@@ -195,6 +205,7 @@ void Character::Step()		//ここにまとめる
 	DebugMove();
 	Gravity();
 	/*Junp();*/
+
 	StepScreen();
 	playSceen.Step();
 	Update();
