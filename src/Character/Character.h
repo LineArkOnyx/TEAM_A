@@ -14,8 +14,11 @@ class Character
 private:
 	int  h, w, handle;
 	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY;
-	bool JunpFrag,DebugFrag,ladderActiv;
-							//梯子を使っているかかどうか判断する
+	bool JunpFrag
+		,DebugFrag
+		,ladderActiv	//梯子を使っているかかどうか判断する
+		,UpJunpTrapFrag;	//ジャンプ台を一回使用したか確認
+							
 	//以下岡山産
 	bool turn;	//左右の反転
 	PL_STATUS status;	//プレイヤーの状態
@@ -36,6 +39,7 @@ public:
 	void DebugSwaitch();
 	void UnderConveyorPower();
 	void UpConveyorPower();
+	void UpJunpTrap();				//ジャンプ台に乗るとジャンプする
 	int GetPosX() { return x; }
 	int GetPosY() { return y; }
 	int GetW() { return w; }
@@ -53,6 +57,7 @@ public:
 	int GetHitSquareY() { return HitSquareY; }
 	int SetJunpFrag() { JunpFrag = false; return JunpFrag; }
 	int SetladderActiv(bool a) { ladderActiv = a; return  ladderActiv; }
+	int SetUpJunpTrapFrag(bool a) { UpJunpTrapFrag = a; return  UpJunpTrapFrag; }
 
 	PL_STATUS GetStatus() { return status; }
 	void SetStatus(PL_STATUS set) { status = set; }

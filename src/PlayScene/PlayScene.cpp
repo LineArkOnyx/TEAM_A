@@ -41,7 +41,7 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 46)
+			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 46 || MapChipData[y][x] == 41)
 				continue;
 			{
 				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
@@ -100,7 +100,7 @@ void PlaySceen::Character_Hit_Map()
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
 
-			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46)
+			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46 || MapChipData[y][x] == 41)
 				continue;
 			{
 				Ay = character.GetNextPosY();
@@ -131,6 +131,7 @@ void PlaySceen::Character_Hit_Map()
 						// めり込み量を計算する
 						character.SetJunpFrag();	//着地したらジャンプできるようにする
 						character.Junp();			//着地してないとジャンプできない
+						character.SetUpJunpTrapFrag(true);	//床に着地していればジャンプ台を起動できる
 						int overlap = Ay + Ah - By;
 						character.SetNextPosY(Ay - overlap);
 						if (MapChipData[y][x] == 47 || MapChipData[y][x] == 48 || MapChipData[y][x] == 49)
@@ -181,6 +182,11 @@ void PlaySceen::Character_Hit_Map()
 				{	
 					//梯子オンフラグを真に
 					character.SetladderActiv(true);
+				}
+
+				if (MapChipData[y][x] == 41)
+				{
+					character.UpJunpTrap();
 				}
 			}
 			
