@@ -13,6 +13,9 @@ const int MAP_DATA_X = 128;
 // マップファイルのパス
 const char MAP_DEFAULT[] = "Data/Map/map.csv";
 
+// マップチップのパス
+const char MAP_CHIP[] = "Data/MapChip/bloak.png";
+
 // マップサイズ
 const int MAP_SIZE = 32;
 
@@ -34,26 +37,55 @@ protected:
 		MAPCHIP_WOOD_FLORE_1,	// シラカバのフローリング
 		MAPCHIP_WOOD_FLORE_2,	// マツのフローリング
 		MAPCHIP_ICE,			// 氷
-		MAPCHIP_SNOW,			// 雪
+		MAPCHIP_ROAD,			// 丸石
 		MAPCHIP_GLASS,			// 草
 		MAPCHIP_TREE_0,			// 木１
 		MAPCHIP_TREE_1,			// 木２
 		MAPCHIP_TILE,			// タイル
-		MAPCHIP_RAVA,			// マグマ
 		MAPCHIP_STONE_0,		// 石レンガ薄
 		MAPCHIP_STONE_1,		// 石レンガ濃
-		MAPCHIP_STONE_BOX,		// 石のブロック
 		MAPCHIP_STEAL,			// スチール
-		MAPCHIP_NET,			// 金網
-		MAPCHIP_017,
-		MAPCHIP_018,
-		MAPCHIP_019,
-		MAPCHIP_01A,
-		MAPCHIP_01B,
-		MAPCHIP_01C,
-		MAPCHIP_01D,
-		MAPCHIP_01E,
-		MAPCHIP_01F,
+		MAPCHIP_NET_0,			// 金網大
+		MAPCHIP_NET_1,			// 金網小
+		MAPCHIP_STONE_BOX,		// 石のブロック
+		MAPCHIP_WATER_0_IN,		// 水中(薄
+		MAPCHIP_WATER_1_IN,		// 水中(中
+		MAPCHIP_WATER_2_IN,		// 水中(濃
+		MAPCHIP_WATER_0_UP,		// 水面(薄
+		MAPCHIP_WATER_1_UP,		// 水面(中
+		MAPCHIP_WATER_2_UP,		// 水面(濃
+		MAPCHIP_RAVA_IN,		// 溶岩中
+		MAPCHIP_RAVA_UP,		// 溶岩面
+		MAPCHIP_CHECK_POINT,	// 中間地点
+		MAPCHIP_OFF_PARTS,		// OFFパーツ
+		MAPCHIP_OFF_BLOCK,		// OFFブロック
+		MAPCHIP_OFF_GRID,		// OFF点線
+		MAPCHIP_OFF_SWITCH,		// OFFスイッチ
+		MAPCHIP_OFF_SWITCH_BLOCK,// OFFスイッチブロック
+		MAPCHIP_ON_PARTS,		// ONパーツ
+		MAPCHIP_ON_BLOCK,		// ONブロック
+		MAPCHIP_ON_GRID,		// ON点線
+		MAPCHIP_ON_SWITCH,		// ONスイッチ
+		MAPCHIP_ON_SWITCH_BLOCK,// ONスイッチブロック
+		MAPCHIP_DOOR_0,			// ドア上
+		MAPCHIP_SPRING_0,		// バネ縦
+		MAPCHIP_SPRING_1,		// バネ横
+		MAPCHIP_SPIKE_0,		// トゲ
+		MAPCHIP_SPIKE_1,		// トゲトゲ
+		MAPCHIP_SPIKE_2,		// トゲ丸
+		MAPCHIP_STEAR,			// 梯子
+		MAPCHIP_COMBARE_0,		// コンベア左端
+		MAPCHIP_COMBARE_1,		// コンベア中央
+		MAPCHIP_COMBARE_2,		// コンベア右端
+		MAPCHIP_DOOR_1,			// ドア下
+		MAPCHIP_ARROW_0,		// 矢印看板右
+		MAPCHIP_ARROW_1,		// 矢印看板左
+		MAPCHIP_ARROW_2,		// 矢印看板上
+		MAPCHIP_ARROW_3,		// 矢印看板下
+		MAPCHIP_ARROW_4,		// 矢印看板右棒
+		MAPCHIP_ARROW_5,		// 矢印看板左棒
+		MAPCHIP_ARROW_6,		// 矢印看板上棒
+		MAPCHIP_BRANK,			// 空気
 
 
 		MAPCHIP_MAX

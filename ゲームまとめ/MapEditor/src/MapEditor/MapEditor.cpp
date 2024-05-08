@@ -17,7 +17,7 @@ void MapData::Init()
 	}
 	ScreenPosX = 0;
 	ScreenPosY = 0;
-	CurrentMCT = MAPCHIP_BLOCK1;
+	CurrentMCT = MAPCHIP_BLOCK_0;
 	
 }
 // •`‰æ
@@ -38,13 +38,13 @@ void MapData::Draw()
 					DrawGraph(x * MAP_SIZE, y * MAP_SIZE, imgHundle[mapchipType], true);
 					switch (m_FileReadMapData[y][x])	// <<focus
 					{
-					case MAPCHIP_BLOCK0:
+					case MAPCHIP_BLOCK_0:
 						DrawBox(x * MAP_SIZE+ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(63, 63, 127), true);
 						break;
-					case MAPCHIP_BLOCK1:
+					case MAPCHIP_BLOCK_1:
 						DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(0, 191, 0), true);
 						break;
-					case MAPCHIP_BLOCK2:
+					case MAPCHIP_BLOCK_2:
 						DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(0, 0, 191), true);
 						break;
 					default:
@@ -137,13 +137,13 @@ int MapEditor::SelectMCT(int num)
 	switch (num)	// <<focus
 	{
 	case 0:
-		CurrentMCT = MAPCHIP_BLOCK0;
+		CurrentMCT = MAPCHIP_BLOCK_0;
 		break;
 	case 1:
-		CurrentMCT = MAPCHIP_BLOCK1;
+		CurrentMCT = MAPCHIP_BLOCK_1;
 		break;
 	case 2:
-		CurrentMCT = MAPCHIP_BLOCK2;
+		CurrentMCT = MAPCHIP_BLOCK_2;
 	default:
 		return -1;
 		break;
