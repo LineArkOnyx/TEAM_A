@@ -29,6 +29,7 @@ void Character::Init()		//‰Šú‰»
 	ladderActiv = false;
 	turn = true;
 	UpJunpTrapFrag = true;
+	sideLeftJunpTrapFrag = true;
 	status = PL_NORMAL;
 }
 void Character::Move()		//ˆÚ“®ˆ—

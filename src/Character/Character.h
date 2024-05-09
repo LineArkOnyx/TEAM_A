@@ -15,15 +15,17 @@ private:
 	int  h, w, handle;
 	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY;
 	bool JunpFrag
-		,DebugFrag
-		,ladderActiv	//梯子を使っているかかどうか判断する
-		,UpJunpTrapFrag;	//ジャンプ台を一回使用したか確認
+		, DebugFrag
+		, ladderActiv			//梯子を使っているかかどうか判断する
+		, UpJunpTrapFrag		//ジャンプ台を一回使用したか確認
+		, sideLeftJunpTrapFrag, 
+		sideRightJunpTrapFrag;
 							
 	//以下岡山産
 	bool turn;	//左右の反転
 	PL_STATUS status;	//プレイヤーの状態
 	int animaHandle;
-
+	//以上岡山産
 public:
 	void Init();		//初期化
 	void Move();		//移動処理
@@ -39,7 +41,7 @@ public:
 	void DebugSwaitch();
 	void UnderConveyorPower();
 	void UpConveyorPower();
-	void UpJunpTrap();				//ジャンプ台に乗るとジャンプする
+	void UpJunpTrap();				//ばねに乗るとジャンプする
 	int GetPosX() { return x; }
 	int GetPosY() { return y; }
 	int GetW() { return w; }

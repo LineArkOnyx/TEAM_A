@@ -3,6 +3,7 @@
 #include"../Character/Character.h"
 #include"../Map/Map.h"
 #include"../MathPlus/MathPlus.h"
+#include"../Scene/Scene.h"
 const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
 const int SQUARE_Y_MAX = 27;	//どこまで当たり判定を取るか
@@ -41,7 +42,7 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 46 || MapChipData[y][x] == 41)
+			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 40 || MapChipData[y][x] == 41 || MapChipData[y][x] == 46 ||  MapChipData[y][x] == 50 || MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45)
 				continue;
 			{
 				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
@@ -51,7 +52,8 @@ void PlaySceen::Character_Hit_Map()
 				Ax = character.GetNextPosX();
 				if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 				{
-					if (dirArray[2]) {
+					if (dirArray[2]) 
+					{
 						// ★ここを考える
 						// めり込み量を計算する
 						int overlap = Bx + Bw - Ax;
@@ -59,7 +61,8 @@ void PlaySceen::Character_Hit_Map()
 					}
 					// 右方向の修正
 					//マリオの右側
-					if (dirArray[3]) {
+					if (dirArray[3]) 
+					{
 						// ★ここを考える
 						// めり込み量を計算する
 						int overlap = Ax + Aw - Bx;
@@ -100,7 +103,7 @@ void PlaySceen::Character_Hit_Map()
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
 
-			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46 || MapChipData[y][x] == 41)
+			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46 || MapChipData[y][x] == 41|| MapChipData[y][x] == 40 || MapChipData[y][x] == 50|| MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45)
 				continue;
 			{
 				Ay = character.GetNextPosY();
@@ -122,7 +125,8 @@ void PlaySceen::Character_Hit_Map()
 					}
 					// 右方向の修正
 					//マリオの右側
-					if (dirArray[1]) {
+					if (dirArray[1]) 
+					{
 						if (character.GetStatus() == PL_JUMP)
 						{
 							character.SetStatus(PL_NORMAL);
@@ -134,6 +138,7 @@ void PlaySceen::Character_Hit_Map()
 						character.SetUpJunpTrapFrag(true);	//床に着地していればジャンプ台を起動できる
 						int overlap = Ay + Ah - By;
 						character.SetNextPosY(Ay - overlap);
+						//ベルトコンベアーの当たり判定
 						if (MapChipData[y][x] == 47 || MapChipData[y][x] == 48 || MapChipData[y][x] == 49)
 						{
 							character.UnderConveyorPower();
@@ -170,23 +175,34 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-
+			bool dirArray[4] = { false,false,false,false };
+			character.GetMoveDirection(dirArray);
 			if (MapChipData[y][x] == -1)
 				continue; 
 
 			DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 0, 255), false);
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 			{
-				//は仕事の当たり判定
+				//はしごの当たり判定
 				if (MapChipData[y][x] == 46)
 				{	
 					//梯子オンフラグを真に
 					character.SetladderActiv(true);
 				}
-
+				//ばねの当たり判定
 				if (MapChipData[y][x] == 41)
 				{
 					character.UpJunpTrap();
+				}
+				//ゴールの当たり判定
+				if (MapChipData[y][x] == 40 || MapChipData[y][x] == 50)
+				{
+					g_CurrentSceneID = SCENE_ID_INIT_RESULT;
+				}
+				//トラップ処理
+				if (MapChipData[y][x] == 43|| MapChipData[y][x] == 44|| MapChipData[y][x] == 45)
+				{
+					DrawFormatString(0, 180, GetColor(255, 255, 255), "トラップヒット");
 				}
 			}
 			
