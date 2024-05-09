@@ -85,8 +85,8 @@ protected:
 		MAPCHIP_ARROW_4,		// 矢印看板右棒
 		MAPCHIP_ARROW_5,		// 矢印看板左棒
 		MAPCHIP_ARROW_6,		// 矢印看板上棒
-		MAPCHIP_BRANK,			// 空気
-
+		MAPCHIP_BRANK0,			// 空気
+		MAPCHIP_BRANK1,			// 空気
 
 		MAPCHIP_MAX
 	};

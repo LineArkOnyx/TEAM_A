@@ -18,7 +18,7 @@ void MapData::Init()
 	ScreenPosX = 0;
 	ScreenPosY = 0;
 	CurrentMCT = MAPCHIP_BLOCK_0;
-	
+	LoadDivGraph(MAP_CHIP, MAPCHIP_MAX, 10, 6, MAP_SIZE, MAP_SIZE, imgHundle);
 }
 // 描画
 
@@ -36,20 +36,7 @@ void MapData::Draw()
 				int mapchipType = m_FileReadMapData[y][x];
 				if (m_FileReadMapData[y][x] != MAPCHIP_NONE) {
 					DrawGraph(x * MAP_SIZE, y * MAP_SIZE, imgHundle[mapchipType], true);
-					switch (m_FileReadMapData[y][x])	// <<focus
-					{
-					case MAPCHIP_BLOCK_0:
-						DrawBox(x * MAP_SIZE+ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(63, 63, 127), true);
-						break;
-					case MAPCHIP_BLOCK_1:
-						DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(0, 191, 0), true);
-						break;
-					case MAPCHIP_BLOCK_2:
-						DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(0, 0, 191), true);
-						break;
-					default:
-						break;
-					}
+					
 					DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(127, 127, 0), false);
 				}
 			}
@@ -112,6 +99,7 @@ int MapEditor::WriteFile(const char* FilePath)
 		}
 		data_file << std::endl;
 	}
+	data_file.close();
 
 	return 0;
 }
@@ -136,14 +124,100 @@ int MapEditor::SelectMCT(int num)
 {
 	switch (num)	// <<focus
 	{
+	case -1:
+		CurrentMCT = MAPCHIP_BRANK0;	// 空気
+		break;
 	case 0:
-		CurrentMCT = MAPCHIP_BLOCK_0;
+		CurrentMCT = MAPCHIP_BLOCK_0;	// ブロック無割れ
 		break;
 	case 1:
-		CurrentMCT = MAPCHIP_BLOCK_1;
+		CurrentMCT = MAPCHIP_BLOCK_1;	// ブロック小割れ
 		break;
 	case 2:
-		CurrentMCT = MAPCHIP_BLOCK_2;
+		CurrentMCT = MAPCHIP_BLOCK_2;	// ブロック中割れ
+		break;
+	case 3:
+		CurrentMCT = MAPCHIP_BLOCK_3;	// ブロック大割れ
+		break;
+	case 4:
+		CurrentMCT = MAPCHIP_SOIL;	// 土
+		break;
+	case 5:
+		CurrentMCT = MAPCHIP_SAND;	// 砂
+		break;
+	case 6:
+		CurrentMCT = MAPCHIP_WOOD_FLORE_0;	// オークのフローリング
+		break;
+	case 7:
+		CurrentMCT = MAPCHIP_WOOD_FLORE_1;	// シラカバのフローリング
+		break;
+	case 8:
+		CurrentMCT = MAPCHIP_WOOD_FLORE_2;	// マツのフローリング
+		break;
+	case 9:
+		CurrentMCT = MAPCHIP_ICE;	// 氷
+		break;
+	case 10:
+		CurrentMCT = MAPCHIP_ROAD;	// 丸石
+		break;
+	case 11:
+		CurrentMCT = MAPCHIP_GLASS;	// 草
+		break;
+	case 12:
+		CurrentMCT = MAPCHIP_TREE_0;	// 木１
+		break;
+	case 13:
+		CurrentMCT = MAPCHIP_TREE_1;	// 木２
+		break;
+	case 14:
+		CurrentMCT = MAPCHIP_TILE;	// タイル
+		break;
+	case 15:
+		CurrentMCT = MAPCHIP_STONE_0;	// 石レンガ薄
+		break;
+	case 16:
+		CurrentMCT = MAPCHIP_STONE_1;	// 石レンガ濃
+		break;
+	case 17:
+		CurrentMCT = MAPCHIP_STEAL;	// スチール
+		break;
+	case 18:
+		CurrentMCT = MAPCHIP_NET_0;	// 金網大
+		break;
+	case 19:
+		CurrentMCT = MAPCHIP_NET_1;	// 金網小
+		break;
+	case 20:
+		CurrentMCT = MAPCHIP_STONE_BOX;	// 石のブロック
+		break;
+	case 21:
+		CurrentMCT = MAPCHIP_WATER_0_IN;	// 水中(薄
+		break;
+	case 22:
+		CurrentMCT = MAPCHIP_WATER_1_IN;	// 水中(中
+		break;
+	case 23:
+		CurrentMCT = MAPCHIP_WATER_2_IN;	// 水中(濃
+		break;
+	case 24:
+		CurrentMCT = MAPCHIP_WATER_0_UP;	// 水面(薄
+		break;
+	case 25:
+		CurrentMCT = MAPCHIP_WATER_1_UP;	// 水面(中
+		break;
+	case 26:
+		CurrentMCT = MAPCHIP_WATER_2_UP;	// 水面(濃
+		break;
+	case 27:
+		CurrentMCT = MAPCHIP_RAVA_IN;	// 溶岩中
+		break;
+	case 28:
+		CurrentMCT = MAPCHIP_RAVA_UP;	// 溶岩面
+		break;
+	case 29:
+		CurrentMCT = MAPCHIP_CHECK_POINT;	// 中間地点
+		break;
+
 	default:
 		return -1;
 		break;
@@ -178,7 +252,7 @@ void MapEditor::Draw()
 		DrawFormatString(0, 0, GetColor(255, 0, 0), "マップチップを選択");
 		DrawBox(0,20,100,120, GetColor(0, 0, 0), true);
 		DrawFormatString(10, 60, GetColor(255, 0, 0), "<< %d >>", IndexBuf);
-
+		DrawGraph(35, 50, imgHundle[CurrentMCT], 0);
 		break;
 
 	case CONTROLE_SAVE_MAP:
@@ -233,8 +307,8 @@ int MapEditor::Loop(int* MouseX, int* MouseY)
 		if (Input::Key::Push(KEY_INPUT_LEFT))
 		{
 			IndexBuf--;
-			if (IndexBuf <= 0) {
-				IndexBuf = 0;
+			if (IndexBuf <= -1) {
+				IndexBuf = -1;
 			}
 		}
 		SelectMCT(IndexBuf);
