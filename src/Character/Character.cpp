@@ -10,13 +10,13 @@ const char CHARACTER_PATH[] = { "data/play/‰¼player64~32.png" };		//‚±‚±‚ÉƒLƒƒƒ
 const float MOVE_SPEED = 5;	//ƒLƒƒƒ‰‚ÌˆÚ“®ƒXƒs[ƒh
 const float GRAVITY_SPEED = 1;		//d—Í
 const float GRAVITY_LIMIT = 8;		//d—Í‚ÌÅ‘å’l
-const float JUNP_LIMIT = 20;		//ƒWƒƒƒ“ƒv‚ªo—ˆ‚éÅ‘å’l
-const float JUNPPOWER = 26;
+const float JUNP_LIMIT = 30;		//ƒWƒƒƒ“ƒv‚ªo—ˆ‚éÅ‘å’l
+const float JUNPPOWER = 28;
 //const float CONBER
 void Character::Init()		//‰Šú‰»
 {
 	x = 800.0f;			//XÀ•W
-	y = 800.0f;			//YÀ•W
+	y = 768.0f;			//YÀ•W
 	h = 64;				//c•
 	w = 32;				//‰¡•
 	Next_x = x;			//XÀ•W‚Ì‘O‚ÌƒtƒŒ[ƒ€‚ğæ‚è‚½‚¢
@@ -64,7 +64,7 @@ void Character::Move()		//ˆÚ“®ˆ—
 			//ƒWƒƒƒ“ƒv‚ğ‚µ‚Ä‚¢‚È‚­‚Ä‚Î‚Ë‚Éæ‚Á‚½‚çƒWƒƒƒ“ƒv‚Å‚«‚é
 			if (UpJunpTrapFrag == false)
 			{
-				if (Input::Key::Push(KEY_INPUT_W))
+				if (Input::Key::Push(KEY_INPUT_UP))
 				{
 					Gravity_Speed -= JUNPPOWER-10;
 					JunpFrag = true;
@@ -77,7 +77,7 @@ void Character::Move()		//ˆÚ“®ˆ—
 		//	ŠK’i‚ªƒIƒ“‚È‚ç“ü‚é
 		if (ladderActiv == true)
 		{
-			if (Input::Key::Keep(KEY_INPUT_W))	//AƒL[‚ğ‰Ÿ‚µ‚½‚çtrue
+			if (Input::Key::Keep(KEY_INPUT_UP))	//AƒL[‚ğ‰Ÿ‚µ‚½‚çtrue
 			{
 				Next_y -= MOVE_SPEED;
 			}
@@ -122,7 +122,7 @@ void Character::Junp()
 	{
 		if (JunpFrag == false)
 		{
-			if (Input::Key::Push(KEY_INPUT_W))
+			if (Input::Key::Push(KEY_INPUT_UP))
 			{
 				Gravity_Speed -= JUNPPOWER;
 				JunpFrag = true;
@@ -153,7 +153,7 @@ void Character::DebugMove()
 		{
 			Next_x += MOVE_SPEED;
 		}
-		if (Input::Key::Keep(KEY_INPUT_W))	//AƒL[‚ğ‰Ÿ‚µ‚½‚çtrue
+		if (Input::Key::Keep(KEY_INPUT_UP))	//AƒL[‚ğ‰Ÿ‚µ‚½‚çtrue
 		{
 			Next_y-= MOVE_SPEED;
 		}
