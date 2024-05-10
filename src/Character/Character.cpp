@@ -236,7 +236,7 @@ void Character::Step()		//‚±‚±‚É‚Ü‚Æ‚ß‚é
 }
 void Character::StepScreen()
 {
-	if (ScreenX > 0&& ScreenX<2000)
+	/*if (ScreenX >= 0&& ScreenX<=2000)*/
 	{
 		ScreenX = x - SCREEN_SIZE_X / 2;
 	}
