@@ -10,7 +10,7 @@ void Play::Init()
 	character.Init();
 	//ƒ}ƒbƒv‚Ì‰Šú‰»
 	map.Init();
-
+	backgroundMapchip.Init();
 	anime.Init();
 	//’Êíˆ—‚ÖˆÚ“®
 	g_CurrentSceneID = SCENE_ID_LOOP_PLAY;
@@ -26,6 +26,7 @@ void Play::Step()
 //•`‰æˆ—
 void Play::Draw()
 {
+	backgroundMapchip.Draw();
 	map.Draw();
 	character.Draw();
 }

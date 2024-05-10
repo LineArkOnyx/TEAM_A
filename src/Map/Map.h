@@ -13,5 +13,15 @@ public:
 	void Load();
 	void Draw();
 };
+
+class BackgroundMapchip
+{
+public:
+	void Init();
+	void Load();
+	void Draw();
+};
 extern Map map;
-extern int MapChipData[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];		//一つ目のマップ
+extern BackgroundMapchip backgroundMapchip;
+extern int MapChipData[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];					//一つ目のマップ
+extern int BackgroundMapchipData[MAP_CHIP_Y_NUM][MAP_CHIP_X_NUM];		//マップチップのバックグラウンド

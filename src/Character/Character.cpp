@@ -10,19 +10,20 @@ const char CHARACTER_PATH[] = { "data/play/‰¼player64~32.png" };		//‚±‚±‚ÉƒLƒƒƒ
 const float MOVE_SPEED = 5;	//ƒLƒƒƒ‰‚ÌˆÚ“®ƒXƒs[ƒh
 const float GRAVITY_SPEED = 1;		//d—Í
 const float GRAVITY_LIMIT = 8;		//d—Í‚ÌÅ‘å’l
+const float JUNP_LIMIT = 20;		//ƒWƒƒƒ“ƒv‚ªo—ˆ‚éÅ‘å’l
 const float JUNPPOWER = 26;
 //const float CONBER
 void Character::Init()		//‰Šú‰»
 {
-	x = 300.0f;			//XÀ•W
+	x = 800.0f;			//XÀ•W
 	y = 800.0f;			//YÀ•W
 	h = 64;				//c•
 	w = 32;				//‰¡•
 	Next_x = x;			//XÀ•W‚Ì‘O‚ÌƒtƒŒ[ƒ€‚ğæ‚è‚½‚¢
 	Next_y = y;			//YÀ•W‚Ì‘O‚ÌƒtƒŒ[ƒ€‚ğæ‚è‚½‚¢
 	Gravity_Speed = 0.0f;//d—Í
-	ScreenX = 0.0f;
-	ScreenY = 0.0f;
+	ScreenX = x - SCREEN_SIZE_X / 2;
+	ScreenY = 239;						//YÀ•W‚ÌƒXƒNƒŠ[ƒ“YÀ•W
 	handle = LoadGraph(CHARACTER_PATH);		//ƒ[ƒh
 	JunpFrag = false;
 	DebugFrag = false;
@@ -57,6 +58,21 @@ void Character::Move()		//ˆÚ“®ˆ—
 			{
 				status = PL_MOVE;
 			}
+		}
+		if (JunpFrag == false)
+		{
+			//ƒWƒƒƒ“ƒv‚ğ‚µ‚Ä‚¢‚È‚­‚Ä‚Î‚Ë‚Éæ‚Á‚½‚çƒWƒƒƒ“ƒv‚Å‚«‚é
+			if (UpJunpTrapFrag == false)
+			{
+				if (Input::Key::Push(KEY_INPUT_W))
+				{
+					Gravity_Speed -= JUNPPOWER-10;
+					JunpFrag = true;
+
+					status = PL_JUMP;
+				}
+			}
+			
 		}
 		//	ŠK’i‚ªƒIƒ“‚È‚ç“ü‚é
 		if (ladderActiv == true)
@@ -164,6 +180,11 @@ void Character::Gravity()	//d—Íˆ—
 			{
 				Next_y += Gravity_Speed;
 			}
+			//‚Î‚Ë‚ÆƒWƒƒƒ“ƒv“¯‚É‰Ÿ‚·‚Æ‚«”ò‚Ô‚©‚ç§Œä
+			if (Gravity_Speed <-JUNP_LIMIT)
+			{
+				Gravity_Speed = -JUNP_LIMIT;
+			}
 		}
 		else
 		{
@@ -215,8 +236,12 @@ void Character::Step()		//‚±‚±‚É‚Ü‚Æ‚ß‚é
 }
 void Character::StepScreen()
 {
-	ScreenX = x - SCREEN_SIZE_X / 2;
-	ScreenY = 239/*y - SCREEN_SIZE_Y / 2*/;						//YÀ•W‚ÌƒXƒNƒŠ[ƒ“YÀ•W
+	/*if (ScreenX >= 0&& ScreenX<=2000)*/
+	{
+		ScreenX = x - SCREEN_SIZE_X / 2;
+	}
+	
+	ScreenY = 239;						//YÀ•W‚ÌƒXƒNƒŠ[ƒ“YÀ•W
 }
 void Character::GetMoveDirection(bool* _dirArray) 		//¶‰Eã‰º‚Ì“–‚½‚è”»’è
 {

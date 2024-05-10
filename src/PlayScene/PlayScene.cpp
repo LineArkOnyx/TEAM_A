@@ -203,6 +203,7 @@ void PlaySceen::Character_Hit_Map()
 				if (MapChipData[y][x] == 43|| MapChipData[y][x] == 44|| MapChipData[y][x] == 45)
 				{
 					DrawFormatString(0, 180, GetColor(255, 255, 255), "トラップヒット");
+					g_CurrentSceneID = SCENE_ID_INIT_RESULT;
 				}
 			}
 			
