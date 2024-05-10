@@ -52,6 +52,8 @@ void Map::Load()
 }
 void Map::Draw()
 {
+
+
 	for (int y = 0; y < MAP_CHIP_Y_NUM; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
@@ -76,6 +78,10 @@ void BackgroundMapchip::Init()
 }
 void BackgroundMapchip::Load()
 {
+
+	m_hndl = LoadGraph("data/PlayScene/”wŒi(–ìŒ´).png");
+
+
 	int mapIndexX = 0;
 	int mapIndexY = 0;
 	FILE* fp;
@@ -108,6 +114,8 @@ void BackgroundMapchip::Load()
 }
 void BackgroundMapchip::Draw()
 {
+	
+
 	for (int y = 0; y < MAP_CHIP_Y_NUM; y++)
 	{
 		for (int x = 0; x < MAP_CHIP_X_NUM; x++)
@@ -118,4 +126,6 @@ void BackgroundMapchip::Draw()
 
 		}
 	}
+	DrawGraph(0.05f-character.GetScreenX(),0.05f-character.GetScreenY(), m_hndl, true);
+	DrawGraph(1920 - character.GetScreenX(), 0.05f - character.GetScreenY(), m_hndl, true);
 }
