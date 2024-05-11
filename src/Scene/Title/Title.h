@@ -3,7 +3,8 @@
 class Title
 {
 private:
-	int m_hndl[2];
+	int m_hndl[3];
+	int m_rand;
 
 public:
 	//‰Šú‰»
