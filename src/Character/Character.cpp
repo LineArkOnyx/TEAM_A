@@ -21,7 +21,7 @@ void Character::Init()		//初期化
 	w = 32;				//横幅
 	Next_x = x;			//X座標の前のフレームを取りたい
 	Next_y = y;			//Y座標の前のフレームを取りたい
-	Hp = 1;
+	Hp = 2;
 	Gravity_Speed = 0.0f;//重力
 	ScreenX = x - SCREEN_SIZE_X / 2;
 	ScreenY = 239;						//Y座標のスクリーンY座標
@@ -33,6 +33,9 @@ void Character::Init()		//初期化
 	UpJunpTrapFrag = true;
 	sideLeftJunpTrapFrag = true;
 	status = PL_NORMAL;
+
+	mutekiCount = 0.0f;
+	mutekiFade = 0.0f;
 }
 void Character::Move()		//移動処理
 {
@@ -197,7 +200,7 @@ void Character::Gravity()	//重力処理
 }	
 void Character::Draw()		//描画
 {
-	DrawBox(x - ScreenX, y - ScreenY, x + w - ScreenX, y + h - ScreenY, GetColor(0, 0, 255),false);
+	//DrawBox(x - ScreenX, y - ScreenY, x + w - ScreenX, y + h - ScreenY, GetColor(0, 0, 255),false);
 	DrawFormatString(0, 0, GetColor(255, 255, 255), "Next_x = %0.2f", Next_x);
 	DrawFormatString(0, 15, GetColor(255, 255, 255), "Next_y = %0.2f", Next_y);
 	DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
@@ -207,9 +210,25 @@ void Character::Draw()		//描画
 	DrawFormatString(0, 135, GetColor(255, 255, 255), "ScreenY = %0.2f", ScreenY);
 	DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv); 
 	DrawFormatString(0, 165, GetColor(255, 255, 255), "UpJunpTrapFrag = %d", UpJunpTrapFrag);
-	DrawRotaGraph(x+w/2- ScreenX, y+h/2- ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
+	//DrawRotaGraph(x + w / 2 - ScreenX, y + h / 2 - ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
 
-	anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
+	//無敵時間じゃなければ通常描画
+	if(mutekiCount<=0)
+	{
+		anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
+	}
+	//無敵時間だったら
+	else if(mutekiCount)
+	{
+		//点滅感覚の加算
+		mutekiFade += 1.0f / FRAME_RATE;
+		//指定の時間になったら描画（点滅）
+		if (mutekiFade >= MUTEKI_FADE)
+		{
+			anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
+			mutekiFade = 0.0f;
+		}
+	}
 }
 void Character::Update()		//アップデート
 {	
@@ -233,7 +252,8 @@ void Character::Step()		//ここにまとめる
 	playSceen.Step();
 	Update();
 
-	ChangeAnima();
+	ChangeAnima();	//アニメの変更
+	GameOverFrg();	//ゲームオーバー判定
 }
 void Character::StepScreen()
 {
@@ -276,18 +296,45 @@ void Character::ChangeAnima()
 	switch (status)
 	{
 	case PL_NORMAL:
-		anime.SetType(ANIME_NORMAL, &animaHandle);
+		anime.SetType(ANIME_NORMAL_D-(Hp-1), &animaHandle);
 		break;
 
 	case PL_MOVE:
-		anime.SetType(ANIME_MOVE, &animaHandle);
+		anime.SetType(ANIME_MOVE_D - (Hp - 1), &animaHandle);
 		break;
 
 	case PL_JUMP:
-		anime.SetType(ANIME_JUMP, &animaHandle);
+		anime.SetType(ANIME_JUMP_D - (Hp - 1), &animaHandle);
 		break;
 
 	default:
 		break;
+	}
+}
+
+void Character::Damage(int damage)
+{
+	//無敵時間じゃなかったら
+	if(mutekiCount<=0)
+	{
+		Hp -= damage;	//ダメージを与える
+		mutekiCount = MUTEKI_TIME;	//無敵時間にする
+		mutekiFade = 0.0f;	//点滅初期化
+	}
+}
+
+//ゲームオーバー判定
+void Character::GameOverFrg()
+{
+	//無敵時間を減算
+	mutekiCount -= 1.0f / FRAME_RATE;
+	if (mutekiCount <= 0)
+	{
+		mutekiCount = 0.0f;	//固定
+	}
+
+	if (Hp <= 0)
+	{
+		g_CurrentSceneID = SCENE_ID_FIN_PLAY;
 	}
 }

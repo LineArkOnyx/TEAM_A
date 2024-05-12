@@ -9,8 +9,11 @@
 enum ANIME_TYPE
 {
 	ANIME_NORMAL,	//
+	ANIME_NORMAL_D,	//
 	ANIME_MOVE,	//
+	ANIME_MOVE_D,	//
 	ANIME_JUMP,	//
+	ANIME_JUMP_D,	//
 
 	ANIME_TYPE_NUM,				//アニメの数
 };
@@ -66,7 +69,7 @@ public:
 
 	//再生
 	//引数：アニメの種類, Ｘ座標, Ｙ座標, １枚あたりの表示時間
-	void SetType(ANIME_TYPE type, int* animaHundle);
+	void SetType(int type, int* animaHundle);
 
 	//アニメーションが使用中か確認する
 	bool CheckType(ANIME_TYPE type);

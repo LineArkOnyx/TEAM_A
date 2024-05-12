@@ -11,15 +11,21 @@ AnimeClass anime;
 const char animeFilePath[ANIME_TYPE_NUM][256] =
 {
 	"data/player/normal_64×32_5.png",	//
+	"data/player/normal2_64×32_5.png",	//
 	"data/player/move_64×32_4.png",	//
+	"data/player/move2_64×32_4.png",	//
 	"data/player/jump_64×32_3.png",	//
+	"data/player/jump2_64×32_3.png",	//
 };
 
 //アニメ数
 const int animeImgNum[ANIME_TYPE_NUM] =
 {
 	5,	//
+	5,	//
 	4,	//
+	4,	//
+	3,	//
 	3,	//
 };
 
@@ -27,7 +33,10 @@ const int animeImgNum[ANIME_TYPE_NUM] =
 const int animeImageSplitNum[ANIME_TYPE_NUM][2] =
 {
 	{3,2},	//
+	{3,2},	//
 	{4,1},	//
+	{4,1},	//
+	{3,1},	//
 	{3,1},	//
 };
 
@@ -37,14 +46,20 @@ const int animeImageSize[ANIME_TYPE_NUM][2] =
 	{32,64},	//
 	{32,64},	//
 	{32,64},	//
+	{32,64},	//
+	{32,64},	//
+	{32,64},	//
 };
 
 //アニメ画像切り替え時間
 const float animwChageTime[ANIME_TYPE_NUM] =
 {
 	0.2f,	//
+	0.25f,	//
 	0.15f,	//
+	0.2f,	//
 	0.1f,	//
+	0.15f,	//
 };
 
 //再生タイプ　ループするか
@@ -52,6 +67,9 @@ const bool animeLoop[ANIME_TYPE_NUM] =
 {
 	true,	//
 	true,	//
+	true,	//
+	true,	//
+	false,	//
 	false,	//
 };
 
@@ -207,10 +225,10 @@ void AnimeClass::Fin()
 
 //アニメのセット
 //引数：アニメの種類, ＆アニメタイプを格納する変数
-void AnimeClass::SetType(ANIME_TYPE type, int* animaHundle)
+void AnimeClass::SetType(int type, int* animaHundle)
 {
 	//変えるアニメが未使用なら以下実行
-	if (!CheckType(type))
+	if (!CheckType((ANIME_TYPE)type))
 	{
 		//現在使用中のアニメのフラグを折る
 		animeInfo[*animaHundle].isUse = false;

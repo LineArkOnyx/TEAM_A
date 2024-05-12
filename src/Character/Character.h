@@ -1,6 +1,9 @@
 #pragma once
 #include"DxLib.h"
 
+const float MUTEKI_TIME = 2.5f;	//無敵時間
+const float MUTEKI_FADE = 0.3f;//点滅間隔
+
 //プレイヤーの状態 : 岡山産
 enum PL_STATUS
 {
@@ -25,6 +28,8 @@ private:
 	bool turn;	//左右の反転
 	PL_STATUS status;	//プレイヤーの状態
 	int animaHandle;
+	float mutekiCount;	//無敵時間のカウント
+	float mutekiFade;	//点滅
 	//以上岡山産
 public:
 	void Init();		//初期化
@@ -64,5 +69,7 @@ public:
 	PL_STATUS GetStatus() { return status; }
 	void SetStatus(PL_STATUS set) { status = set; }
 	void ChangeAnima();
+	void Damage(int damage = 1);
+	void GameOverFrg();	//ゲームオーバー判定
 };
 extern Character character;
