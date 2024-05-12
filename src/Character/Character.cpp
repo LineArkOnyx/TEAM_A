@@ -10,7 +10,7 @@ const char CHARACTER_PATH[] = { "data/play/‰¼player64~32.png" };		//‚±‚±‚ÉƒLƒƒƒ
 const float MOVE_SPEED = 5;	//ƒLƒƒƒ‰‚ÌˆÚ“®ƒXƒs[ƒh
 const float GRAVITY_SPEED = 1;		//d—Í
 const float GRAVITY_LIMIT = 8;		//d—Í‚ÌÅ‘å’l
-const float JUNP_LIMIT = 30;		//ƒWƒƒƒ“ƒv‚ªo—ˆ‚éÅ‘å’l
+const float JUNP_LIMIT = 20;		//ƒWƒƒƒ“ƒv‚ªo—ˆ‚éÅ‘å’l
 const float JUNPPOWER = 28;
 //const float CONBER
 void Character::Init()		//‰Šú‰»
@@ -21,6 +21,7 @@ void Character::Init()		//‰Šú‰»
 	w = 32;				//‰¡•
 	Next_x = x;			//XÀ•W‚Ì‘O‚ÌƒtƒŒ[ƒ€‚ğæ‚è‚½‚¢
 	Next_y = y;			//YÀ•W‚Ì‘O‚ÌƒtƒŒ[ƒ€‚ğæ‚è‚½‚¢
+	Hp = 1;
 	Gravity_Speed = 0.0f;//d—Í
 	ScreenX = x - SCREEN_SIZE_X / 2;
 	ScreenY = 239;						//YÀ•W‚ÌƒXƒNƒŠ[ƒ“YÀ•W

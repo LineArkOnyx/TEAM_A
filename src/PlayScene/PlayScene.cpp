@@ -42,7 +42,7 @@ void PlaySceen::Character_Hit_Map()
 			int By = y * 32;
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
-			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 40 || MapChipData[y][x] == 41 || MapChipData[y][x] == 46 ||  MapChipData[y][x] == 50 || MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45)
+			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 40 || MapChipData[y][x] == 41 || MapChipData[y][x] == 46 ||  MapChipData[y][x] == 50 || MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45 || MapChipData[y][x] == 51 || MapChipData[y][x] == 52 || MapChipData[y][x] == 53 || MapChipData[y][x] == 54 || MapChipData[y][x] == 55 || MapChipData[y][x] == 56 || MapChipData[y][x] == 57 || MapChipData[y][x] == 58)
 				continue;
 			{
 				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
@@ -103,7 +103,7 @@ void PlaySceen::Character_Hit_Map()
 			int Bw = MAPCHIP_SIZW;
 			int Bh = MAPCHIP_SIZH;
 
-			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46 || MapChipData[y][x] == 41|| MapChipData[y][x] == 40 || MapChipData[y][x] == 50|| MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45)
+			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46 || MapChipData[y][x] == 41|| MapChipData[y][x] == 40 || MapChipData[y][x] == 50|| MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45 || MapChipData[y][x] == 51 || MapChipData[y][x] == 52 || MapChipData[y][x] == 53 || MapChipData[y][x] == 54 || MapChipData[y][x] == 55 || MapChipData[y][x] == 56 || MapChipData[y][x] == 57 || MapChipData[y][x] == 58)
 				continue;
 			{
 				Ay = character.GetNextPosY();
@@ -120,8 +120,10 @@ void PlaySceen::Character_Hit_Map()
 						{
 							character.UpConveyorPower();
 						}
-						
-						
+						if (MapChipData[y][x] == 6)
+						{
+							MapChipData[y][x] = -1;
+						}
 					}
 					// 右方向の修正
 					//マリオの右側
@@ -204,6 +206,10 @@ void PlaySceen::Character_Hit_Map()
 				{
 					DrawFormatString(0, 180, GetColor(255, 255, 255), "トラップヒット");
 					g_CurrentSceneID = SCENE_ID_INIT_RESULT;
+				}
+				if (MapChipData[y][x] == 58)
+				{
+					MapChipData[y][x] = -1;
 				}
 			}
 			

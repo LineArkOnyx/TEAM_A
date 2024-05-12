@@ -12,7 +12,7 @@ enum PL_STATUS
 class Character
 {
 private:
-	int  h, w, handle;
+	int  h, w, handle,Hp;
 	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY;
 	bool JunpFrag
 		, DebugFrag
