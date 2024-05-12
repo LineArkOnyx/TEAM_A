@@ -211,6 +211,11 @@ void PlaySceen::Character_Hit_Map()
 				if (MapChipData[y][x] == 58)
 				{
 					MapChipData[y][x] = -1;
+					if (character.GetHp() < 2)
+					{
+						character.SetHp(2);
+					}
+					
 				}
 			}
 			

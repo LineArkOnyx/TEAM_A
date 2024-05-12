@@ -65,7 +65,8 @@ public:
 	int SetJunpFrag() { JunpFrag = false; return JunpFrag; }
 	int SetladderActiv(bool a) { ladderActiv = a; return  ladderActiv; }
 	int SetUpJunpTrapFrag(bool a) { UpJunpTrapFrag = a; return  UpJunpTrapFrag; }
-
+	int GetHp() { return Hp; }
+	int SetHp(int a) { Hp =a; return Hp; }
 	PL_STATUS GetStatus() { return status; }
 	void SetStatus(PL_STATUS set) { status = set; }
 	void ChangeAnima();

@@ -210,6 +210,7 @@ void Character::Draw()		//•`‰æ
 	DrawFormatString(0, 135, GetColor(255, 255, 255), "ScreenY = %0.2f", ScreenY);
 	DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv); 
 	DrawFormatString(0, 165, GetColor(255, 255, 255), "UpJunpTrapFrag = %d", UpJunpTrapFrag);
+	DrawFormatString(0, 180, GetColor(255, 255, 255), "Hp = %d", Hp);
 	//DrawRotaGraph(x + w / 2 - ScreenX, y + h / 2 - ScreenY, 1.0, 0.0, handle, true);		//ƒLƒƒƒ‰ƒNƒ^[•`‰æ
 
 	//–³“GŠÔ‚¶‚á‚È‚¯‚ê‚Î’Êí•`‰æ
