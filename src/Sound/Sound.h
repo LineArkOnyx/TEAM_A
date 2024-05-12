@@ -18,13 +18,21 @@ enum BGM_TYPE
 
 enum SE_TYPE
 {
-	SE_SYSTEM,		//システム
-	SE_FISHING_ROD,	//釣り竿
-	SE_LURE,		//ルアー着水
-	SE_HIT,			//魚がルアーに反応
-	SE_FISH_GET,	//魚を釣った
-	SE_TIME_LIMIT,	//時間制限
-	SE_FINISH,		//ゲーム終了
+	SE_COIN,		    //コイン
+	SE_DIVING,	        //ダイビング
+	SE_DOOR_OPEN,		//ドアを開ける
+	SE_DOOR_CLOSE,		//ドアを閉める
+	SE_THORN_ONE,	    //とげ(単体)に刺さる
+	SE_THORN_PLURAL,	//とげ(複数)に刺さる
+	SE_LADDER,		    //はしごを上る
+	SE_SPRING,		    //ばね
+	SE_POWER_UP,		//パワーアップ音
+	SE_LEVER,		    //レバーを倒す
+	SE_SWIM,	    	//泳ぐ音
+	SE_RUN_LAWN,		//芝生の上を走る
+	SE_EAT,		        //食べ物をパクッ
+	SE_FOOTFALL,		//足音(単体)
+	SE_STEP,		    //踏みつけ音
 
 	SE_MAX_NUM
 };

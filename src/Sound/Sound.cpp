@@ -9,7 +9,7 @@ char bgmSoundPath[BGM_MAX_NUM][255] =
 {
 	//音楽
 	"data/sound/bgm/titleBGM.mp3",	//タイトル
-	"data/sound/bgm/playBGM.mp3",	//プレイ
+	"data/BGM/playBGM.wav",	//プレイ
 	"data/sound/bgm/resultBGM.mp3",	//リザルト
 
 	//環境音
@@ -35,13 +35,22 @@ int soundVolume_bgm[BGM_MAX_NUM] =
 //SEのパス
 char seSoundPath[SE_MAX_NUM][255] =
 {
-	"data/sound/se/system.mp3",		//システム
-	"data/sound/se/fishingRod.mp3",	//釣り竿
-	"data/sound/se/lure.mp3",		//ルアー着水
-	"data/sound/se/hit.mp3",		//魚がルアーに反応
-	"data/sound/se/fishGet.mp3",	//魚を釣った
-	"data/sound/se/timeLimit.mp3",	//時間制限
-	"data/sound/se/finish.mp3",		//ゲーム終了
+	"data/SE/コイン.wav",		        //コイン
+	"data/SE/ダイビング.wav",		    //ダイビング
+	"data/SE/ドアを開ける.wav",		    //ドアを開ける
+	"data/SE/ドアを閉める.wav",		    //ドアを閉める
+	"data/SE/とげ(単体)に刺さる.wav",	//とげ(単体)に刺さる
+	"data/SE/とげ(複数)に刺さる.wav",	//とげ(複数)に刺さる
+	"data/SE/はしごを上る.wav",		    //はしごを上る
+	"data/SE/ばね.wav",		            //ばね
+	"data/SE/パワーアップ音.wav",		//パワーアップ音
+	"data/SE/レバーを倒す.wav",		    //レバーを倒す
+	"data/SE/泳ぐ音.wav",		        //泳ぐ音
+	"data/SE/芝生の上を走る.wav",		//芝生の上を走る
+	"data/SE/食べ物をパクッ.wav",		//食べ物をパクッ
+	"data/SE/足音(単体).wav",		    //足音(単体)
+	"data/SE/踏みつけ音.wav",		    //踏みつけ音
+	
 };
 
 //音量
