@@ -4,7 +4,7 @@
 #include "../../Input/Input.h"
 #include <math.h>
 
-#define LOGO	"data/Title/âºTitleLogo.png"	// ÉçÉS
+#define LOGO	"data/Title/TitleLogo.png"		// ÉçÉS
 #define BACK	"data/Title/DaytimeBack.png"	// îwåi
 #define BACK2	"data/Title/NightBack.png"		// îwåi.ñÈ
 #define SKY		"data/Title/DaytimeSky.png"		// ãÛ
