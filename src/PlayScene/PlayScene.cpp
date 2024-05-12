@@ -207,6 +207,7 @@ void PlaySceen::Character_Hit_Map()
 					DrawFormatString(0, 180, GetColor(255, 255, 255), "トラップヒット");
 					g_CurrentSceneID = SCENE_ID_INIT_RESULT;
 				}
+				//ここが回復アイテム
 				if (MapChipData[y][x] == 58)
 				{
 					MapChipData[y][x] = -1;
