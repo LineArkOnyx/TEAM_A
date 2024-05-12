@@ -18,7 +18,7 @@ void MapData::Init()
 	ScreenPosX = 0;
 	ScreenPosY = 0;
 	CurrentMCT = MAPCHIP_BLOCK_0;
-	LoadDivGraph(MAP_CHIP, MAPCHIP_MAX, 10, 6, MAP_SIZE, MAP_SIZE, imgHundle);
+	LoadDivGraph(MAP_CHIP, MAPCHIP_MAX, 10, 7, MAP_SIZE, MAP_SIZE, imgHundle);
 }
 // 描画
 
@@ -216,6 +216,126 @@ int MapEditor::SelectMCT(int num)
 		break;
 	case 29:
 		CurrentMCT = MAPCHIP_CHECK_POINT;	// 中間地点
+		break;
+	case 30:
+		CurrentMCT = MAPCHIP_OFF_PARTS;	//OFFパーツ
+		break;
+	case 31:
+		CurrentMCT = MAPCHIP_OFF_BLOCK;	// OFFブロック
+		break; 
+	case 32:
+		CurrentMCT = MAPCHIP_OFF_GRID;	// OFF点線
+		break;
+	case 33:
+		CurrentMCT = MAPCHIP_OFF_SWITCH;	// OFFスイッチ
+		break;
+	case 34:
+		CurrentMCT = MAPCHIP_OFF_SWITCH_BLOCK;// OFFスイッチブロック
+		break;
+	case 35:
+		CurrentMCT = MAPCHIP_ON_PARTS;	// ONパーツ
+		break;
+	case 36:
+		CurrentMCT = MAPCHIP_ON_BLOCK;	// ONブロック
+		break;
+	case 37:
+		CurrentMCT = MAPCHIP_ON_GRID;	// ON点線
+		break;
+	case 38:
+		CurrentMCT = MAPCHIP_ON_SWITCH;	// ONスイッチ
+		break;
+	case 39:
+		CurrentMCT = MAPCHIP_ON_SWITCH_BLOCK;// ONスイッチブロック
+		break;
+	case 40:
+		CurrentMCT = MAPCHIP_DOOR_0;	// ドア上
+		break;
+	case 41:
+		CurrentMCT = MAPCHIP_SPRING_0;	// バネ縦
+		break;
+	case 42:
+		CurrentMCT = MAPCHIP_SPRING_1;	// バネ横
+		break;
+	case 43:
+		CurrentMCT = MAPCHIP_SPIKE_0;	// トゲ
+		break;
+	case 44:
+		CurrentMCT = MAPCHIP_SPIKE_1;	// トゲトゲ
+		break;
+	case 45:
+		CurrentMCT = MAPCHIP_SPIKE_2;	// トゲ丸
+		break;
+	case 46:
+		CurrentMCT = MAPCHIP_STEAR;	// 梯子
+		break;
+	case 47:
+		CurrentMCT = MAPCHIP_COMBARE_0;	// コンベア左端
+		break;
+	case 48:
+		CurrentMCT = MAPCHIP_COMBARE_1;	// コンベア中央
+		break;
+	case 49:
+		CurrentMCT = MAPCHIP_COMBARE_2;	// コンベア右端
+		break;
+	case 50:
+		CurrentMCT = MAPCHIP_DOOR_1;	// ドア下
+		break;
+	case 51:
+		CurrentMCT = MAPCHIP_ARROW_0;	// 矢印看板右
+		break;
+	case 52:
+		CurrentMCT = MAPCHIP_ARROW_1;	// 矢印看板左
+		break;
+	case 53:
+		CurrentMCT = MAPCHIP_ARROW_2;	// 矢印看板上
+		break;
+	case 54:
+		CurrentMCT = MAPCHIP_ARROW_3;	// 矢印看板下
+		break;
+	case 55:
+		CurrentMCT = MAPCHIP_ARROW_4;	// 矢印看板右棒
+		break;
+	case 56:
+		CurrentMCT = MAPCHIP_ARROW_5;	// 矢印看板左棒
+		break;
+	case 57:
+		CurrentMCT = MAPCHIP_ARROW_6;	// 矢印看板上棒
+		break;
+	case 58:
+		CurrentMCT = MAPCHIP_APPLE_0;	// リンゴ
+		break;
+	case 59:
+		CurrentMCT = MAPCHIP_APPLE_1;	// 金リンゴ
+		break;
+	case 60:
+		CurrentMCT = MAPCHIP_BAWLE;	// ボウル
+		break;
+	case 61:
+		CurrentMCT = MAPCHIP_PEPPER;	// トウガラシ
+		break;
+	case 62:
+		CurrentMCT = MAPCHIP_SPHERE_R;	// 赤玉
+		break;
+	case 63:
+		CurrentMCT = MAPCHIP_SPHERE_B;	// 青玉
+		break;
+	case 64:
+		CurrentMCT = MAPCHIP_SPHERE_G;	// 緑玉
+		break;
+	case 65:
+		CurrentMCT = MAPCHIP_CAKE;	// ケーキ
+		break;
+	case 66:
+		CurrentMCT = MAPCHIP_COIN;	// コイン
+		break;
+	case 67:
+		CurrentMCT = MAPCHIP_BRANK0;	// 空気
+		break;
+	case 68:
+		CurrentMCT = MAPCHIP_BRANK1;	// 空気
+		break;
+	case 69:
+		CurrentMCT = MAPCHIP_BRANK2;	// 空気
 		break;
 
 	default:

@@ -85,8 +85,18 @@ protected:
 		MAPCHIP_ARROW_4,		// 矢印看板右棒
 		MAPCHIP_ARROW_5,		// 矢印看板左棒
 		MAPCHIP_ARROW_6,		// 矢印看板上棒
+		MAPCHIP_APPLE_0,		// リンゴ
+		MAPCHIP_APPLE_1,		// 金リンゴ
+		MAPCHIP_BAWLE,			// ボウル
+		MAPCHIP_PEPPER,			// トウガラシ
+		MAPCHIP_SPHERE_R,		// 赤玉
+		MAPCHIP_SPHERE_B,		// 青玉
+		MAPCHIP_SPHERE_G,		// 緑玉
+		MAPCHIP_CAKE,			// ケーキ
+		MAPCHIP_COIN,			// コイン
 		MAPCHIP_BRANK0,			// 空気
 		MAPCHIP_BRANK1,			// 空気
+		MAPCHIP_BRANK2,			// 空気
 
 		MAPCHIP_MAX
 	};
