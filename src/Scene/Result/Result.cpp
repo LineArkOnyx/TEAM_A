@@ -6,6 +6,11 @@
 //初期化
 void Result::Init()
 {
+	m_hndl = LoadGraph("data/GameOver/仮Gameover.png");
+
+	m_Blend = 255;		// 透過用変数
+	m_Direction = 1;	// 透過方向の変更
+	m_BlendSpeed = 15;	// 透過スピード
 
 	//通常処理へ移動
 	g_CurrentSceneID = SCENE_ID_LOOP_RESULT;
@@ -14,11 +19,9 @@ void Result::Init()
 //通常処理
 void Result::Step()
 {
-	m_hndl = LoadGraph("data/GameOver/仮Gameover.png");
 
 	if (Input::Key::Push(KEY_INPUT_RETURN) != 0)
 		g_CurrentSceneID = SCENE_ID_FIN_RESULT;
-
 }
 
 //描画処理
@@ -46,6 +49,7 @@ void Result::Draw()
 //終了処理
 void Result::Fin()
 {
+	DeleteGraph(m_hndl);
 
 	//次のシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;

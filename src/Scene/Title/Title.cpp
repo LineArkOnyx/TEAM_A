@@ -2,6 +2,7 @@
 #include"Title.h"
 #include"../Scene.h"
 #include "../../Input/Input.h"
+#include <math.h>
 
 #define LOGO	"data/Title/仮TitleLogo.png"	// ロゴ
 #define BACK	"data/Title/DaytimeBack.png"	// 背景
@@ -17,17 +18,6 @@ void Title::Init()
 	m_backrand = GetRand(1);	// 乱数0～1
 	m_effectrand = GetRand(SCREEN_SIZE_X - 10);
 
-	m_posX = m_effectrand;
-	m_posY = SCREEN_SIZE_Y;
-	m_gravity = GRAVITY;
-
-	//通常処理へ移動
-	g_CurrentSceneID = SCENE_ID_LOOP_TITLE;
-}
-
-//通常処理
-void Title::Step()
-{
 	// 背景ランダム
 	if (m_backrand == 0) {
 		m_hndl[0] = LoadGraph(SKY);		// 空
@@ -39,15 +29,105 @@ void Title::Step()
 	}
 	m_hndl[2] = LoadGraph(LOGO);		// ロゴ
 
+	m_Blend[0] = { 255 };				// 透過用変数
+	m_Blend[1] = { 255 };
+	m_Direction[0] = { 1 }; 			// 透過方向の変更
+	m_Direction[1] = { 1 };
+	m_BlendSpeed[0] = { 2 }; 			// 透過スピード
+	m_BlendSpeed[1] = { 15 };
+
+	m_posX = m_effectrand;
+	m_posY = SCREEN_SIZE_Y;
+	for (int i = 0; i < EFFECT_NUM; i++) {
+		m_posX2[i] = m_posX;
+		m_posY2[i] = m_posY;
+		m_speed[i] = EFFECT_SPEED;
+		m_angle[i] = (2 * M_PI / EFFECT_NUM) * i;
+	}
+	m_gravity = GRAVITY;
+	for (int i = 0; i < EFFECT_NUM; i++) {
+		m_gravity2[i] = m_gravity;
+	}
+
+	m_R = 255;
+	m_G = 0;
+	m_B = 0;
+	m_ColorSpeed = 15;
+
+	//通常処理へ移動
+	g_CurrentSceneID = SCENE_ID_LOOP_TITLE;
+}
+
+//通常処理
+void Title::Step()
+{
 	// エフェクト処理
 	m_gravity -= 0.1f;
+	for (int i = 0; i < EFFECT_NUM; i++) {
+		m_gravity2[i] += 0.1f;
+	}
 	m_posY -= 10.0f + m_gravity;
+	for (int i = 0; i < EFFECT_NUM; i++) {
+		m_posX2[i] += cos(m_angle[i]/m_gravity) * m_speed[i];
+		m_posY2[i] += sin(m_angle[i]/m_gravity) * m_speed[i];
+	}
+	// 拡散前処理
 	if (m_posY < -10.0f || m_posY > SCREEN_SIZE_Y) {
 		m_effectrand = GetRand(SCREEN_SIZE_X - 10);
 		m_posX = m_effectrand;
 		m_gravity = GRAVITY;
+		for (int i = 0; i < EFFECT_NUM; i++) {
+			m_gravity2[i] = m_gravity;
+		}
 		m_posY = SCREEN_SIZE_Y;
 	}
+	// 拡散後処理
+	if (m_gravity >= -10.0f) {
+		for (int i = 0; i < EFFECT_NUM; i++) {
+			m_posX2[i] = m_posX;
+			m_posY2[i] = m_posY;
+		}
+	}
+
+	// 虹処理
+	if (m_R == 255 && m_G == 0 && m_B < 255) {
+		m_B += m_ColorSpeed;
+	}
+	else if (m_R > 0 && m_G == 0 && m_B == 255) {
+		m_R -= m_ColorSpeed;
+	}
+	else if (m_R == 0 && m_G < 255 && m_B == 255) {
+		m_G += m_ColorSpeed;
+	}
+	else if (m_R == 0 && m_G == 255 && m_B > 0) {
+		m_B -= m_ColorSpeed;
+	}
+	else if (m_R < 255 && m_G == 255 && m_B == 0) {
+		m_R += m_ColorSpeed;
+	}
+	else if (m_R == 255 && m_G > 0 && m_B == 0) {
+		m_G -= m_ColorSpeed;
+	}
+	// 0と255超えないよう調整
+	if (m_R < 0) {
+		m_R = 0;
+	}
+	else if (m_R > 255) {
+		m_R = 255;
+	}
+	else if (m_G < 0) {
+		m_G = 0;
+	}
+	else if (m_G > 255) {
+		m_G = 255;
+	}
+	else if (m_B < 0) {
+		m_B = 0;
+	}
+	else if (m_B > 255) {
+		m_B = 255;
+	}
+
 	
 	if (Input::Key::Push(KEY_INPUT_RETURN) != 0)
 		g_CurrentSceneID = SCENE_ID_FIN_TITLE;
@@ -63,7 +143,11 @@ void Title::Draw()
 
 	// エフェクト処理
 	if (m_gravity >= -10.0f)
-		DrawBox(m_posX, m_posY, m_posX + 10, m_posY + 10, GetColor(0, 255, 0), true);
+		DrawBox(m_posX, m_posY, m_posX + 10, m_posY + 10, GetColor(m_R, m_G, m_B), true);
+
+	for (int i = 0; i < EFFECT_NUM; i++) {
+		DrawBox(m_posX2[i], m_posY2[i], m_posX2[i] + 10, m_posY2[i] + 10, GetColor(m_R, m_G, m_B), true);
+	}
 
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0);
 
@@ -94,6 +178,9 @@ void Title::Draw()
 //終了処理
 void Title::Fin()
 {
+	//DeleteGraph(m_hndl[0]);
+	//DeleteGraph(m_hndl[1]);
+	//DeleteGraph(m_hndl[2]);
 
 	//次のシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
