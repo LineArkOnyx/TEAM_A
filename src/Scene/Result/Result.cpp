@@ -25,7 +25,21 @@ void Result::Step()
 void Result::Draw()
 {
 	DrawGraph(0, 0, m_hndl, true);
-	DrawFormatString(0, 0, GetColor(0, 255, 255), "Push Enter Key");
+
+	// ìßâﬂèàóù
+	SetDrawBlendMode(DX_BLENDMODE_ALPHA, m_Blend);
+	DrawFormatString(SCREEN_SIZE_X / 2.3, SCREEN_SIZE_Y / 1.125, GetColor(0, 255, 255), "Push Enter Key");
+	m_Blend -= m_Direction * m_BlendSpeed;
+	if (m_Blend <= 0 && m_Direction == 1)
+	{
+		m_Direction = -1;
+	}
+	else if (m_Blend >= 255 && m_Direction == -1)
+	{
+		m_Direction = 1;
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+
 
 }
 
