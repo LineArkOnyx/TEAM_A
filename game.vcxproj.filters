@@ -52,6 +52,9 @@
     <Filter Include="ソース ファイル\MapEditor">
       <UniqueIdentifier>{a07604fd-c492-4b04-8ff5-53884f6c686c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\scene\gameover">
+      <UniqueIdentifier>{dce31226-cd2b-48a3-9963-f7704ea0372a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FrameRate\FrameRate.cpp">
@@ -99,6 +102,9 @@
     <ClCompile Include="src\Map\MapEditor.cpp">
       <Filter>ソース ファイル\MapEditor</Filter>
     </ClCompile>
+    <ClCompile Include="src\Scene\Gameover\gameover.cpp">
+      <Filter>ソース ファイル\scene\gameover</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FrameRate\FrameRate.h">
@@ -142,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="src\Map\MapEditor.h">
       <Filter>ソース ファイル\MapEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene\Gameover\gameover.h">
+      <Filter>ソース ファイル\scene\gameover</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

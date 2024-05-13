@@ -5,6 +5,7 @@
 #include"../Map/Map.h"
 #include"../PlayScene/PlayScene.h"
 #include"../Input/Input.h"
+#include"../Sound/Sound.h"
 Character character;
 const char CHARACTER_PATH[] = { "data/play/仮player64×32.png" };		//ここにキャラのパスを入れる
 const float MOVE_SPEED = 5;	//キャラの移動スピード
@@ -81,15 +82,34 @@ void Character::Move()		//移動処理
 		//	階段がオンなら入る
 		if (ladderActiv == true)
 		{
- 			if (Input::Key::Keep(KEY_INPUT_SPACE) || Input::Key::Push(KEY_INPUT_W) || Input::Key::Push(KEY_INPUT_UP))	//Aキーを押したらtrue
+ 			if (Input::Key::Keep(KEY_INPUT_SPACE) || Input::Key::Keep(KEY_INPUT_W) || Input::Key::Keep(KEY_INPUT_UP))	//Aキーを押したらtrue
 			{
 				Next_y -= MOVE_SPEED;
+
+				if (Sound::Se::Check(SE_LADDER))   //SEが流れているか
+				{
+					Sound::Se::Play(SE_LADDER);
+				}
+			}
+			if (Input::Key::Release(KEY_INPUT_SPACE) || Input::Key::Release(KEY_INPUT_W) || Input::Key::Release(KEY_INPUT_UP)) {
+				Sound::Se::Stop(SE_LADDER);        //SEの停止
 			}
 			if (Input::Key::Keep(KEY_INPUT_S))	//Aキーを押したらtrue
 			{
 				Next_y += MOVE_SPEED;
-			}
 
+				if (Sound::Se::Check(SE_LADDER))   //SEが流れているか
+				{
+					Sound::Se::Play(SE_LADDER);
+				}
+			}
+			if (Input::Key::Release(KEY_INPUT_S)) {
+				Sound::Se::Stop(SE_LADDER);         //SEの停止
+			}
+		}
+		if (ladderActiv == false)
+		{
+			Sound::Se::Stop(SE_LADDER);
 		}
 		//移動状態で離したら待機状態になる
 		if(status == PL_MOVE)
@@ -130,6 +150,7 @@ void Character::Junp()
 			{
 				Gravity_Speed -= JUNPPOWER;
 				JunpFrag = true;
+				Sound::Se::Play(SE_JANP);
 
 				status = PL_JUMP;
 			}
@@ -143,6 +164,7 @@ void Character::UpJunpTrap()
 	{
 		UpJunpTrapFrag = false;
 		Gravity_Speed -= JUNPPOWER;
+		Sound::Se::Play(SE_SPRING);
 	}
 }
 void Character::DebugMove()
@@ -300,6 +322,14 @@ void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 void Character::UnderConveyorPower()
 {
 	character.Next_x-= 3;
+
+	if (Sound::Se::Check(SE_KYATAPIRA))  //SEが流れているか
+	{
+		Sound::Se::Play(SE_KYATAPIRA);
+	}
+	if (JunpFrag == true) {
+		Sound::Se::Stop(SE_KYATAPIRA);   //SEの停止
+	}
 }
 void Character::UpConveyorPower()
 {
@@ -338,10 +368,12 @@ void Character::Damage(int damage)
 		if(GetRand(1)==0)
 		{
 			Effect::Play(EFFECT_TYPE_DAMAGE, x + w / 2 - ScreenX, y + h / 2 - ScreenY);
+			Sound::Se::Play(SE_THORN_ONE);
 		}
 		else
 		{
 			Effect::Play(EFFECT_TYPE_BLOCK, x + w / 2 - ScreenX, y + h / 2 - ScreenY);
+			Sound::Se::Play(SE_THORN_ONE);
 		}
 	}
 }

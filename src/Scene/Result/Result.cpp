@@ -6,7 +6,9 @@
 //初期化
 void Result::Init()
 {
-	m_hndl = LoadGraph("data/GameOver/仮Gameover.png");
+	m_hndl = LoadGraph("data/Clear/GAMECLEAR.png");
+	clear1 = LoadGraph("data/Clear/c2.png");
+	clear2 = LoadGraph("data/Clear/2c2.png");
 
 	m_Blend = 255;		// 透過用変数
 	m_Direction = 1;	// 透過方向の変更
@@ -29,6 +31,18 @@ void Result::Draw()
 {
 	DrawGraph(0, 0, m_hndl, true);
 
+	//点滅処理
+	rogocount++;
+	if (rogocount <= 79) {
+		DrawGraph(500, 350, clear1, true);    //一つ目を描画
+	}
+	if (rogocount >= 80) {
+		DrawGraph(500, 350, clear2, true);    //二つ目を描画
+	}
+	if (rogocount >= 160) {
+		rogocount = 0;    //カウントを戻す
+	}
+
 	// 透過処理
 	SetDrawBlendMode(DX_BLENDMODE_ALPHA, m_Blend);
 	DrawFormatString(SCREEN_SIZE_X / 2.3, SCREEN_SIZE_Y / 1.125, GetColor(0, 255, 255), "Push Enter Key");
@@ -50,6 +64,7 @@ void Result::Draw()
 void Result::Fin()
 {
 	DeleteGraph(m_hndl);
+	rogocount = 0;    //カウントを戻す
 
 	//次のシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_TITLE;

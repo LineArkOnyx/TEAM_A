@@ -6,6 +6,7 @@ enum BGM_TYPE
 	BGM_TITLE,	//タイトル画面
 	BGM_PLAY,	//プレイ画面
 	BGM_RESULT,	//リザルト画面
+	BGM_GAMEOVER,	//ゲームオーバー画面
 
 	//環境音
 	BGM_FISH,		//魚が暴れる
@@ -34,6 +35,8 @@ enum SE_TYPE
 	SE_FOOTFALL,		//足音(単体)
 	SE_STEP,		    //踏みつけ音
 	SE_BLOAK_DESTRUCTION, //ブロックを壊す音
+	SE_JANP,               //ジャンプ
+	SE_KYATAPIRA,          //コンベア
 
 	SE_MAX_NUM
 };
@@ -43,6 +46,7 @@ class Sound
 public:
 	//サウンドまとめ初期化
 	static void Init();
+	static void Fin();
 
 	class Bgm
 	{
@@ -56,10 +60,14 @@ public:
 
 		//BGMの通常処理：種類
 		static void Play(int type);
+		//BGMが流れているか
+		static bool Check(int type);
 		//BGMの音量調節：種類,音量(ﾊﾟｰｾﾝﾃｰｼﾞ)
 		static void SetVolume(int type,int volume);
 		//BGMの停止：種類
 		static void StopSound(int type);
+		//BGMの破棄の処理
+		static void Fin();
 	};
 
 	class Se
@@ -74,8 +82,14 @@ public:
 
 		//SEの通常処理：種類
 		static void Play(int type);
+		//SEが流れているか
+		static bool Check(int type);
+		//SEの停止
+		static void Stop(int type);
 		//SEの音量調節：種類,音量(ﾊﾟｰｾﾝﾃｰｼﾞ)
 		static void SetVolume(int type,int volume);
+		//SEの破棄の処理
+		static void Fin();
 	};
 };
 

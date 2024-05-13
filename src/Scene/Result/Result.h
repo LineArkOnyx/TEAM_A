@@ -4,6 +4,9 @@ class Result
 {
 private:
 	int m_hndl;
+	int clear1;
+	int clear2;
+	int rogocount = 0;
 
 	int m_Blend;		// “§‰ß—p•Ï”
 	int m_Direction;	// “§‰ß•ûŒü‚Ì•ÏX
