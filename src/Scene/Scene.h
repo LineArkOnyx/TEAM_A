@@ -2,6 +2,7 @@
 #include"../FrameRate/FrameRate.h"
 #include"../Input/Input.h"
 #include"../Animation/Animation.h"
+#include"../Effect/Effect.h"
 
 // define
 #define	SCREEN_SIZE_X	1280//1920	// X方向の画面サイズを指定

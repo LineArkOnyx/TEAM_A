@@ -123,6 +123,7 @@ void PlaySceen::Character_Hit_Map()
 						if (MapChipData[y][x] == 6)
 						{
 							MapChipData[y][x] = -1;
+							Effect::Play(EFFECT_TYPE_BREAK, Bx - character.GetScreenX(), By - character.GetScreenY());
 						}
 					}
 					// 右方向の修正
@@ -205,15 +206,25 @@ void PlaySceen::Character_Hit_Map()
 				if (MapChipData[y][x] == 43|| MapChipData[y][x] == 44|| MapChipData[y][x] == 45)
 				{
 					DrawFormatString(0, 180, GetColor(255, 255, 255), "トラップヒット");
-					character.Damage();	//ダメージを１与える
+
+					if (MapChipData[y][x] == 44)
+					{
+						character.Damage(2);	//ダメージを２与える
+					}
+					else
+					{
+						character.Damage();	//ダメージを１与える
+					}
+					
 				}
 				//ここが回復アイテム
 				if (MapChipData[y][x] == 58)
 				{
 					MapChipData[y][x] = -1;
-					if (character.GetHp() < 2)
+					if (character.GetHp()>0)
 					{
 						character.SetHp(2);
+						Effect::Play(EFFECT_TYPE_ITEM, Bx- character.GetScreenX(), By - character.GetScreenY());
 					}
 					
 				}

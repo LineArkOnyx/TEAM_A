@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="src\Animation\Animation.cpp" />
     <ClCompile Include="src\Character\Character.cpp" />
+    <ClCompile Include="src\Effect\Effect.cpp" />
     <ClCompile Include="src\FrameRate\FrameRate.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="src\Animation\Animation.h" />
     <ClInclude Include="src\Character\Character.h" />
+    <ClInclude Include="src\Effect\Effect.h" />
     <ClInclude Include="src\FrameRate\FrameRate.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Map\Map.h" />

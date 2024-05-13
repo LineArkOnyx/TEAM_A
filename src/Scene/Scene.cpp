@@ -17,6 +17,11 @@ void Scene()
 		//タイトルシーン初期化
 	case SCENE_ID_INIT_TITLE:
 
+		Effect::Init();
+		Effect::Load(EFFECT_TYPE_ITEM,10);
+		Effect::Load(EFFECT_TYPE_DAMAGE,10);
+		Effect::Load(EFFECT_TYPE_BREAK,10);
+		
 		title.Init();
 
 		break;
@@ -46,6 +51,8 @@ void Scene()
 		//プレイシーン通常処理
 	case SCENE_ID_LOOP_PLAY:
 		play.Step();
+		Effect::Step();
+
 		play.Draw();
 		break;
 		//プレイシーン終了処理
@@ -76,6 +83,8 @@ void Scene()
 	case SCENE_ID_FIN_RESULT:
 
 		result.Fin();
+
+		Effect::Fin();
 
 		break;
 	}

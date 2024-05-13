@@ -28,6 +28,7 @@ void Play::Draw()
 {
 	backgroundMapchip.Draw();
 	map.Draw();
+	Effect::Draw();
 	character.Draw();
 }
 

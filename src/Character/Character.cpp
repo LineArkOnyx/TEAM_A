@@ -321,6 +321,7 @@ void Character::Damage(int damage)
 		Hp -= damage;	//ダメージを与える
 		mutekiCount = MUTEKI_TIME;	//無敵時間にする
 		mutekiFade = 0.0f;	//点滅初期化
+		Effect::Play(EFFECT_TYPE_DAMAGE, x + w / 2 - ScreenX, y + h / 2 - ScreenY);
 	}
 }
 
