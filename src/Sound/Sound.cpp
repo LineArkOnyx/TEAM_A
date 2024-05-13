@@ -50,6 +50,7 @@ char seSoundPath[SE_MAX_NUM][255] =
 	"data/SE/食べ物をパクッ.wav",		//食べ物をパクッ
 	"data/SE/足音(単体).wav",		    //足音(単体)
 	"data/SE/踏みつけ音.wav",		    //踏みつけ音
+	"data/SE/ブロックを壊す音.wav",		 //ブロックを壊す音
 	
 };
 
