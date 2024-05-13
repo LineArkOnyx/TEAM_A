@@ -111,6 +111,20 @@ int MapEditor::SetMCT(int* MouseX, int* MouseY)
 			for (int x = 0; x < MAP_DATA_X; x++){
 				if (Collision::Rect(x * MAP_SIZE, y * MAP_SIZE, MAP_SIZE, MAP_SIZE, *MouseX - ScreenPosX, *MouseY - ScreenPosY, 1, 1)) {
 					m_FileReadMapData[y][x] = CurrentMCT;
+
+					if (CurrentMCT == MAPCHIP_DOOR_0 && y < MAP_DATA_Y - 1){
+						m_FileReadMapData[y + 1][x] = MAPCHIP_DOOR_1;
+					}
+					if (CurrentMCT == MAPCHIP_DOOR_1 && y > 1) {
+						m_FileReadMapData[y - 1][x] = MAPCHIP_DOOR_0;
+					}
+
+					if (CurrentMCT == MAPCHIP_COMBARE_1 && x < MAP_DATA_X - 1 && m_FileReadMapData[y][x + 1] != MAPCHIP_COMBARE_1) {
+						m_FileReadMapData[y][x - 1] = MAPCHIP_COMBARE_0;
+					}
+					if (CurrentMCT == MAPCHIP_COMBARE_1 && x > 1 && m_FileReadMapData[y][x - 1] != MAPCHIP_COMBARE_1) {
+						m_FileReadMapData[y][x + 1] = MAPCHIP_COMBARE_2;
+					}
 				}
 			}
 		}
@@ -368,7 +382,7 @@ void MapEditor::Draw()
 		break;
 
 	case CONTROLE_SELECT_MCT:
-
+		
 		DrawFormatString(0, 0, GetColor(255, 0, 0), "マップチップを選択");
 		DrawBox(0,20,100,120, GetColor(0, 0, 0), true);
 		DrawFormatString(10, 60, GetColor(255, 0, 0), "<< %d >>", IndexBuf);
