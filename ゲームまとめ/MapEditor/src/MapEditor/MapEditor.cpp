@@ -35,7 +35,7 @@ void MapData::Draw()
 			if (isReadFile) {
 				int mapchipType = m_FileReadMapData[y][x];
 				if (m_FileReadMapData[y][x] != MAPCHIP_NONE) {
-					DrawGraph(x * MAP_SIZE, y * MAP_SIZE, imgHundle[mapchipType], true);
+					DrawGraph(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, imgHundle[mapchipType], true);
 					
 					DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(127, 127, 0), false);
 				}
@@ -63,6 +63,10 @@ int MapData::ReadFile(const char *FilePath)
 
 	while (true) {
 		// 数値部分を読み込む
+		if (mapIndexY >= 32 || mapIndexX >= 128)
+		{
+			break;
+		}
 		fscanf_s(fp, "%d", &m_FileReadMapData[mapIndexY][mapIndexX]);
 		mapIndexX++;
 		// 「,」を飛ばすために読み込みを実行
@@ -105,6 +109,7 @@ int MapEditor::WriteFile(const char* FilePath)
 }
 int MapEditor::SetMCT(int* MouseX, int* MouseY) 
 {
+	
 	GetMousePoint(MouseX, MouseY);		//マウス地点取得
 	if (Input::Mouse::Keep(MOUSE_INPUT_LEFT) || Input::Mouse::Push(MOUSE_INPUT_LEFT)) {
 		for (int y = 0; y < MAP_DATA_Y; y++){
@@ -119,10 +124,10 @@ int MapEditor::SetMCT(int* MouseX, int* MouseY)
 						m_FileReadMapData[y - 1][x] = MAPCHIP_DOOR_0;
 					}
 
-					if (CurrentMCT == MAPCHIP_COMBARE_1 && x < MAP_DATA_X - 1 && m_FileReadMapData[y][x + 1] != MAPCHIP_COMBARE_1) {
+					if (CurrentMCT == MAPCHIP_COMBARE_1 && x < MAP_DATA_X - 1 && x > 1 && m_FileReadMapData[y][x + 1] != MAPCHIP_COMBARE_1) {
 						m_FileReadMapData[y][x - 1] = MAPCHIP_COMBARE_0;
 					}
-					if (CurrentMCT == MAPCHIP_COMBARE_1 && x > 1 && m_FileReadMapData[y][x - 1] != MAPCHIP_COMBARE_1) {
+					if (CurrentMCT == MAPCHIP_COMBARE_1 && x < MAP_DATA_X - 1 && x > 1 && m_FileReadMapData[y][x - 1] != MAPCHIP_COMBARE_1) {
 						m_FileReadMapData[y][x + 1] = MAPCHIP_COMBARE_2;
 					}
 				}
