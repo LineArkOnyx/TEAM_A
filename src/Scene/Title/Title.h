@@ -8,6 +8,7 @@
 class Title
 {
 private:
+	int m_sound;						// サウンドハンドル
 	int m_hndl[3];						// 画像ハンドル
 
 	int m_backrand;						// 背景乱数

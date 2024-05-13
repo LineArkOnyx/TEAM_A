@@ -3,18 +3,24 @@
 #include"../Scene.h"
 #include "../../Input/Input.h"
 #include <math.h>
+#include "../../Sound/Sound.h"
 
-#define LOGO	"data/Title/TitleLogo.png"		// ƒƒS
-#define BACK	"data/Title/DaytimeBack.png"	// ”wŒi
-#define BACK2	"data/Title/NightBack.png"		// ”wŒi.–é
-#define SKY		"data/Title/DaytimeSky.png"		// ‹ó
-#define SKY2	"data/Title/NightSky.png"		// Â‹ó
+#define LOGO	"data/Title/TitleLogo.png"			// ƒƒS
+#define BACK	"data/Title/DaytimeBack.png"		// ”wŒi
+#define BACK2	"data/Title/NightBack.png"			// ”wŒi.–é
+#define SKY		"data/Title/DaytimeSky.png"			// ‹ó
+#define SKY2	"data/Title/NightSky.png"			// Â‹ó
 
-#define GRAVITY	0.05f							// d—Í‚Ì’l
+#define SOUND	"data/Title/MusMus-PKPK-001.mp3"	// BGM (ƒtƒŠ[BGME‰¹Šy‘fŞMusMus https://musmus.main.jp)
+
+#define GRAVITY	0.05f								// d—Í‚Ì’l
 
 //‰Šú‰»
 void Title::Init()
 {
+	m_sound = LoadSoundMem(SOUND);
+	PlaySoundMem(m_sound, DX_PLAYTYPE_LOOP, true);
+
 	m_backrand = GetRand(1);	// —”0`1
 	m_effectrand = GetRand(SCREEN_SIZE_X - 10);
 
@@ -68,8 +74,12 @@ void Title::Step()
 	}
 	m_posY -= 10.0f + m_gravity;
 	for (int i = 0; i < EFFECT_NUM; i++) {
-		m_posX2[i] += cos(m_angle[i]/m_gravity) * m_speed[i];
-		m_posY2[i] += sin(m_angle[i]/m_gravity) * m_speed[i];
+		//m_posX2[i] += cos(m_angle[i]) * m_speed[i];
+		//m_posY2[i] += sin(m_angle[i]) * m_speed[i];
+		//m_posX2[i] += cos(m_angle[i] / m_gravity) * m_speed[i];
+		//m_posY2[i] += sin(m_angle[i] / m_gravity) * m_speed[i];
+		m_posX2[i] += cos(m_angle[i]+GetRand(2.0f)) * m_speed[i] / 1.5f;
+		m_posY2[i] += sin(m_angle[i]+GetRand(2.0f)) * m_speed[i] / 1.5f;
 	}
 	// ŠgU‘Oˆ—
 	if (m_posY < -10.0f || m_posY > SCREEN_SIZE_Y) {
@@ -148,8 +158,7 @@ void Title::Draw()
 	for (int i = 0; i < EFFECT_NUM; i++) {
 		DrawBox(m_posX2[i], m_posY2[i], m_posX2[i] + 10, m_posY2[i] + 10, GetColor(m_R, m_G, m_B), true);
 	}
-
-	SetDrawBlendMode(DX_BLENDMODE_ALPHA, 0);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 
 	// “§‰ßˆ—
 	for (int i = 0; i < 2; i++) {
@@ -178,9 +187,11 @@ void Title::Draw()
 //I—¹ˆ—
 void Title::Fin()
 {
-	//DeleteGraph(m_hndl[0]);
-	//DeleteGraph(m_hndl[1]);
-	//DeleteGraph(m_hndl[2]);
+	DeleteGraph(m_hndl[0]);
+	DeleteGraph(m_hndl[1]);
+	DeleteGraph(m_hndl[2]);
+
+	DeleteSoundMem(m_sound);
 
 	//Ÿ‚ÌƒV[ƒ“‚ÉˆÚ“®
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
