@@ -33,6 +33,7 @@ enum SE_TYPE
 	SE_EAT,		        //食べ物をパクッ
 	SE_FOOTFALL,		//足音(単体)
 	SE_STEP,		    //踏みつけ音
+	SE_BLOAK_DESTRUCTION, //ブロックを壊す音
 
 	SE_MAX_NUM
 };
