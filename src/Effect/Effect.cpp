@@ -14,7 +14,9 @@ const char effectFilePath[EFFECT_TYPE_NUM][256] =
 {
 	"data/effect/item.png",		//アイテム取得
 	"data/effect/damage.png",	//ダメージ
+	
 	"data/effect/break.png",	//ブロックを破壊
+	"data/effect/block.png",	//ダメージ
 };
 
 //各エフェクトのアニメ数
@@ -22,7 +24,9 @@ const int effectAnimeImgNum[EFFECT_TYPE_NUM] =
 {
 	15,	//アイテム取得
 	14,	//ダメージ
+	
 	10,	//ブロックを破壊
+	6,	//ブロックを破壊
 };
 
 //各エフェクトの画像分割数 [0] = x, [1] = y
@@ -30,7 +34,9 @@ const int effectImageSplitNum[EFFECT_TYPE_NUM][2] =
 {
 	{ 5, 3,},	//アイテム取得
 	{ 14, 1,},	//ダメージ
+	
 	{ 10, 1,},	//ブロックを破壊
+	{ 5, 2,},	//ブロックを破壊
 };
 
 //エフェクトの画像サイズ
@@ -38,6 +44,8 @@ const int effectImageSize[EFFECT_TYPE_NUM][2] =
 {
 	{ 120, 120,},	//アイテム取得
 	{ 120, 120,},	//ダメージ
+
+	{ 120, 120,},	//ブロックを破壊
 	{ 120, 120,},	//ブロックを破壊
 };
 
@@ -46,7 +54,9 @@ const float effectChageTime[EFFECT_TYPE_NUM] =
 {
 	0.05f,	//アイテム取得
 	0.07f,	//ダメージ
+	
 	0.05f,	//ブロックを破壊
+	0.04f,	//ブロックを破壊
 };
 
 //==============================================================================================

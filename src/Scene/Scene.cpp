@@ -20,6 +20,7 @@ void Scene()
 		Effect::Init();
 		Effect::Load(EFFECT_TYPE_ITEM,10);
 		Effect::Load(EFFECT_TYPE_DAMAGE,10);
+		Effect::Load(EFFECT_TYPE_BLOCK,10);
 		Effect::Load(EFFECT_TYPE_BREAK,10);
 		
 		title.Init();

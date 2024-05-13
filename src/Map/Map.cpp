@@ -60,7 +60,7 @@ void Map::Draw()
 		{
 			if (MapChipData[y][x] == -1)
 				continue;
-			DrawGraph(x * 32- character.GetScreenX(), y * 32- character.GetScreenY(), MapHandle[MapChipData[y][x]], true);
+			DrawGraphF(x * 32- character.GetScreenX(), y * 32- character.GetScreenY(), MapHandle[MapChipData[y][x]], true);
 		
 		}
 	}
@@ -122,10 +122,10 @@ void BackgroundMapchip::Draw()
 		{
 			if (BackgroundMapchipData[y][x] == -1)
 				continue;
-			DrawGraph(x * 32 - character.GetScreenX(), y * 32 - character.GetScreenY(), BackgroundMapHandle[BackgroundMapchipData[y][x]], true);
+			DrawGraphF(x * 32 - character.GetScreenX(), y * 32 - character.GetScreenY(), BackgroundMapHandle[BackgroundMapchipData[y][x]], true);
 
 		}
 	}
-	DrawGraph(0.05f-character.GetScreenX(),0.05f-character.GetScreenY(), m_hndl, true);
-	DrawGraph(1920 - character.GetScreenX(), 0.05f - character.GetScreenY(), m_hndl, true);
+	DrawGraphF(0.05f-character.GetScreenX(),0.05f-character.GetScreenY(), m_hndl, true);
+	DrawGraphF(1920 - character.GetScreenX(), 0.05f - character.GetScreenY(), m_hndl, true);
 }

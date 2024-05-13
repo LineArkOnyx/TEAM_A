@@ -2,7 +2,7 @@
 #include"DxLib.h"
 
 const float MUTEKI_TIME = 2.5f;	//無敵時間
-const float MUTEKI_FADE = 0.3f;//点滅間隔
+const float MUTEKI_FADE = 0.1f;//点滅間隔
 
 //プレイヤーの状態 : 岡山産
 enum PL_STATUS
@@ -47,21 +47,21 @@ public:
 	void UnderConveyorPower();
 	void UpConveyorPower();
 	void UpJunpTrap();				//ばねに乗るとジャンプする
-	int GetPosX() { return x; }
-	int GetPosY() { return y; }
+	float GetPosX() { return x; }
+	float GetPosY() { return y; }
 	int GetW() { return w; }
 	int GetH() { return h; }
-	int GetScreenX() { return ScreenX; }
-	int GetScreenY() { return ScreenY; }
-	int GetNextPosX() { return Next_x; }
-	int GetNextPosY() { return Next_y; }
-	int SetPosX(int a) { x = a; return x; }
-	int SetPosY(int a) { y = a; return y; }
-	int SetNextPosX(int a) { Next_x = a; return Next_x; }
-	int SetNextPosY(int a) { Next_y = a; return Next_y; }
-	int SetGravitySpeed(float a) { Gravity_Speed =a; return Gravity_Speed; }
-	int GetHitSquareX() { return HitSquareX; }
-	int GetHitSquareY() { return HitSquareY; }
+	float GetScreenX() { return ScreenX; }
+	float GetScreenY() { return ScreenY; }
+	float GetNextPosX() { return Next_x; }
+	float GetNextPosY() { return Next_y; }
+	float SetPosX(float a) { x = a; return x; }
+	float SetPosY(float a) { y = a; return y; }
+	float SetNextPosX(float a) { Next_x = a; return Next_x; }
+	float SetNextPosY(float a) { Next_y = a; return Next_y; }
+	float SetGravitySpeed(float a) { Gravity_Speed =a; return Gravity_Speed; }
+	float GetHitSquareX() { return HitSquareX; }
+	float GetHitSquareY() { return HitSquareY; }
 	int SetJunpFrag() { JunpFrag = false; return JunpFrag; }
 	int SetladderActiv(bool a) { ladderActiv = a; return  ladderActiv; }
 	int SetUpJunpTrapFrag(bool a) { UpJunpTrapFrag = a; return  UpJunpTrapFrag; }

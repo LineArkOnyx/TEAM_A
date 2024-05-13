@@ -68,7 +68,7 @@ void Character::Move()		//移動処理
 			//ジャンプをしていなくてばねに乗ったらジャンプできる
 			if (UpJunpTrapFrag == false)
 			{
-				if (Input::Key::Push(KEY_INPUT_UP))
+				if (Input::Key::Push(KEY_INPUT_SPACE)|| Input::Key::Push(KEY_INPUT_W)|| Input::Key::Push(KEY_INPUT_UP))
 				{
 					Gravity_Speed -= JUNPPOWER-10;
 					JunpFrag = true;
@@ -81,7 +81,7 @@ void Character::Move()		//移動処理
 		//	階段がオンなら入る
 		if (ladderActiv == true)
 		{
-			if (Input::Key::Keep(KEY_INPUT_UP))	//Aキーを押したらtrue
+ 			if (Input::Key::Keep(KEY_INPUT_SPACE) || Input::Key::Push(KEY_INPUT_W) || Input::Key::Push(KEY_INPUT_UP))	//Aキーを押したらtrue
 			{
 				Next_y -= MOVE_SPEED;
 			}
@@ -126,7 +126,7 @@ void Character::Junp()
 	{
 		if (JunpFrag == false)
 		{
-			if (Input::Key::Push(KEY_INPUT_UP))
+			if (Input::Key::Push(KEY_INPUT_SPACE) || Input::Key::Push(KEY_INPUT_W) || Input::Key::Push(KEY_INPUT_UP))
 			{
 				Gravity_Speed -= JUNPPOWER;
 				JunpFrag = true;
@@ -227,9 +227,22 @@ void Character::Draw()		//描画
 		if (mutekiFade >= MUTEKI_FADE)
 		{
 			anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
-			mutekiFade = 0.0f;
+		
+			if (mutekiFade >= MUTEKI_FADE*2)
+			{
+				mutekiFade = 0.0f;
+			}
+		}
+		else
+		{
+			SetDrawBlendMode(DX_BLENDMODE_ALPHA, 100);
+			
+			anime.Draw(x + w / 2 - ScreenX, y + h / 2 - ScreenY, animaHandle, 1.0, 0.0, turn);
+			
 		}
 	}
+
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 void Character::Update()		//アップデート
 {	
@@ -321,7 +334,15 @@ void Character::Damage(int damage)
 		Hp -= damage;	//ダメージを与える
 		mutekiCount = MUTEKI_TIME;	//無敵時間にする
 		mutekiFade = 0.0f;	//点滅初期化
-		Effect::Play(EFFECT_TYPE_DAMAGE, x + w / 2 - ScreenX, y + h / 2 - ScreenY);
+
+		if(GetRand(1)==0)
+		{
+			Effect::Play(EFFECT_TYPE_DAMAGE, x + w / 2 - ScreenX, y + h / 2 - ScreenY);
+		}
+		else
+		{
+			Effect::Play(EFFECT_TYPE_BLOCK, x + w / 2 - ScreenX, y + h / 2 - ScreenY);
+		}
 	}
 }
 

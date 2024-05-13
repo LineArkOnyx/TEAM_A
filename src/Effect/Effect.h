@@ -17,7 +17,7 @@ enum EFFECT_TYPE
 	//=============通常=============
 	EFFECT_NORMAL = -1,
 	
-
+	
 
 	EFFECT_NORMAL_NUM,
 	//=============加算=============
@@ -25,7 +25,9 @@ enum EFFECT_TYPE
 
 	EFFECT_TYPE_ITEM,		//アイテム取得
 	EFFECT_TYPE_DAMAGE,							//ダメージ
+	
 	EFFECT_TYPE_BREAK,							//ブロックを破壊
+	EFFECT_TYPE_BLOCK,							//ブロック
 
 	//==============================
 

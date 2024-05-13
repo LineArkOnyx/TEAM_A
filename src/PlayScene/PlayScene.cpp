@@ -12,7 +12,7 @@ PlaySceen playSceen;
 void PlaySceen::Character_Hit_Map()
 {
 	character.StepHitSquare();
-	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
+	for (int y = (int)character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
 		//配列を超えたら
 		if (character.GetHitSquareY() > SQUARE_Y_MAX)
@@ -20,7 +20,7 @@ void PlaySceen::Character_Hit_Map()
 		//配列を超えたら
 		if (character.GetHitSquareY() < SQUARE_Y_LOWEST)
 			continue;
-		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
+		for (int x = (int)character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			// ★ここを考える
 			// どの方向に進んでいたかチェック
@@ -32,10 +32,10 @@ void PlaySceen::Character_Hit_Map()
 			// ★ここを考える
 			// 矩形の当たり判定用のデータを準備
 			// プレイヤーの情報
-			int Ax = character.GetPosX();
-			int Ay = character.GetPosY();
-			int Aw = character.GetW();
-			int Ah = character.GetH();
+			int Ax = (int)character.GetPosX();
+			int Ay = (int)character.GetPosY();
+			int Aw = (int)character.GetW();
+			int Ah = (int)character.GetH();
 
 			// オブジェクトの情報
 			int Bx = x * 32;
@@ -45,11 +45,11 @@ void PlaySceen::Character_Hit_Map()
 			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 40 || MapChipData[y][x] == 41 || MapChipData[y][x] == 46 ||  MapChipData[y][x] == 50 || MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45 || MapChipData[y][x] == 51 || MapChipData[y][x] == 52 || MapChipData[y][x] == 53 || MapChipData[y][x] == 54 || MapChipData[y][x] == 55 || MapChipData[y][x] == 56 || MapChipData[y][x] == 57 || MapChipData[y][x] == 58)
 				continue;
 			{
-				DrawBox(Bx-character.GetScreenX(), By- character.GetScreenY(), Bx + Bw- character.GetScreenX(), By + Bh- character.GetScreenY(), GetColor(255, 255, 255), false);
-				DrawBox(Ax - character.GetScreenX(), Ay - character.GetScreenY(), Ax + Aw - character.GetScreenX(), Ay + Ah - character.GetScreenY(), GetColor(255, 0, 0), false);
+				DrawBox(Bx-(int)character.GetScreenX(), By- (int)character.GetScreenY(), Bx + Bw- (int)character.GetScreenX(), By + Bh- (int)character.GetScreenY(), GetColor(255, 255, 255), false);
+				DrawBox(Ax - (int)character.GetScreenX(), Ay - (int)character.GetScreenY(), Ax + Aw - (int)character.GetScreenX(), Ay + Ah - (int)character.GetScreenY(), GetColor(255, 0, 0), false);
 
-				Ay = character.GetPosY();
-				Ax = character.GetNextPosX();
+				Ay = (int)character.GetPosY();
+				Ax = (int)character.GetNextPosX();
 				if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 				{
 					if (dirArray[2]) 
@@ -57,7 +57,7 @@ void PlaySceen::Character_Hit_Map()
 						// ★ここを考える
 						// めり込み量を計算する
 						int overlap = Bx + Bw - Ax;
-						character.SetNextPosX(Ax + overlap);
+						character.SetNextPosX((float)Ax + overlap);
 					}
 					// 右方向の修正
 					//マリオの右側
@@ -66,14 +66,14 @@ void PlaySceen::Character_Hit_Map()
 						// ★ここを考える
 						// めり込み量を計算する
 						int overlap = Ax + Aw - Bx;
-						character.SetNextPosX(Ax - overlap);
+						character.SetNextPosX((float)Ax - overlap);
 					}
 				}
 			}
 
 		}
 	}
-	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
+	for (int y = (int)character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
 		//配列を超えたら
 		if (character.GetHitSquareY() > SQUARE_Y_MAX)
@@ -81,7 +81,7 @@ void PlaySceen::Character_Hit_Map()
 		//配列を超えたら
 		if (character.GetHitSquareY() < SQUARE_Y_LOWEST)
 			continue;
-		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
+		for (int x = (int)character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			// ★ここを考える
 				// どの方向に進んでいたかチェック
@@ -92,10 +92,10 @@ void PlaySceen::Character_Hit_Map()
 			// ★ここを考える
 			// 矩形の当たり判定用のデータを準備
 			// プレイヤーの情報
-			int Ax = character.GetPosX();
-			int Ay = character.GetPosY();
-			int Aw = character.GetW();
-			int Ah = character.GetH();
+			int Ax = (int)character.GetPosX();
+			int Ay = (int)character.GetPosY();
+			int Aw = (int)character.GetW();
+			int Ah = (int)character.GetH();
 
 			// オブジェクトの情報
 			int Bx = x * 32;
@@ -106,8 +106,8 @@ void PlaySceen::Character_Hit_Map()
 			if (MapChipData[y][x] == -1 || MapChipData[y][x] == 46 || MapChipData[y][x] == 41|| MapChipData[y][x] == 40 || MapChipData[y][x] == 50|| MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45 || MapChipData[y][x] == 51 || MapChipData[y][x] == 52 || MapChipData[y][x] == 53 || MapChipData[y][x] == 54 || MapChipData[y][x] == 55 || MapChipData[y][x] == 56 || MapChipData[y][x] == 57 || MapChipData[y][x] == 58)
 				continue;
 			{
-				Ay = character.GetNextPosY();
-				Ax = character.GetNextPosX();
+				Ay = (int)character.GetNextPosY();
+				Ax = (int)character.GetNextPosX();
 				if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 				{
 					if (dirArray[0]) {
@@ -115,7 +115,7 @@ void PlaySceen::Character_Hit_Map()
 						// めり込み量を計算する
 						character.SetGravitySpeed(0.0);
 						int overlap = By + Bh - Ay;
-						character.SetNextPosY((Ay + overlap));
+						character.SetNextPosY(((float)Ay + overlap));
 						if (MapChipData[y][x] == 47 || MapChipData[y][x] == 48 || MapChipData[y][x] == 49)
 						{
 							character.UpConveyorPower();
@@ -140,7 +140,7 @@ void PlaySceen::Character_Hit_Map()
 						character.Junp();			//着地してないとジャンプできない
 						character.SetUpJunpTrapFrag(true);	//床に着地していればジャンプ台を起動できる
 						int overlap = Ay + Ah - By;
-						character.SetNextPosY(Ay - overlap);
+						character.SetNextPosY((float)Ay - overlap);
 						//ベルトコンベアーの当たり判定
 						if (MapChipData[y][x] == 47 || MapChipData[y][x] == 48 || MapChipData[y][x] == 49)
 						{
@@ -153,7 +153,7 @@ void PlaySceen::Character_Hit_Map()
 			}
 		}
 	}
-	for (int y = character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
+	for (int y = (int)character.GetHitSquareY() - SQUARE_Y; character.GetHitSquareY() + SQUARE_Y > y; y++)
 	{
 		//配列を超えたら
 		if (character.GetHitSquareY() > SQUARE_Y_MAX)
@@ -161,17 +161,17 @@ void PlaySceen::Character_Hit_Map()
 		//配列を超えたら
 		if (character.GetHitSquareY() < SQUARE_Y_LOWEST)
 			continue;
-		for (int x = character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
+		for (int x = (int)character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
 			
 			// ★ここを考える
 			// 矩形の当たり判定用のデータを準備
 			// プレイヤーの情報
 
-			int Ax = character.GetPosX();
-			int Ay = character.GetPosY();
-			int Aw = character.GetW();
-			int Ah = character.GetH();
+			int Ax = (int)character.GetPosX();
+			int Ay = (int)character.GetPosY();
+			int Aw = (int)character.GetW();
+			int Ah = (int)character.GetH();
 
 			// オブジェクトの情報
 			int Bx = x * 32;
@@ -183,7 +183,7 @@ void PlaySceen::Character_Hit_Map()
 			if (MapChipData[y][x] == -1)
 				continue; 
 
-			DrawBox(Bx - character.GetScreenX(), By - character.GetScreenY(), Bx + Bw - character.GetScreenX(), By + Bh - character.GetScreenY(), GetColor(255, 0, 255), false);
+			DrawBox(Bx - (int)character.GetScreenX(), By - (int)character.GetScreenY(), Bx + Bw - (int)character.GetScreenX(), By + Bh - (int)character.GetScreenY(), GetColor(255, 0, 255), false);
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 			{
 				//はしごの当たり判定
