@@ -3,12 +3,16 @@
 #include"Title/Title.h"
 #include"Play/Play.h"
 #include"Result/Result.h"
+#include"../Map/MapEditor.h"
 #include"../Character/Character.h"
 SCENE_ID g_CurrentSceneID = SCENE_ID_INIT_TITLE;
 
 Title title;
 Play play;
 Result result;
+MapEditor mapeditor;
+int EMouseBufX = 0;
+int EMouseBufY = 0;
 
 void Scene()
 {
@@ -86,6 +90,29 @@ void Scene()
 		result.Fin();
 
 		Effect::Fin();
+
+		break;
+
+//===========================================
+
+		//エディタシーン初期化処理
+	case SCENE_ID_INIT_EDITOR:
+
+		mapeditor.Init();
+
+		break;
+
+		//エディタシーン通常処理
+	case SCENE_ID_LOOP_EDITOR:
+		GetMousePoint(&EMouseBufX, &EMouseBufY);
+		mapeditor.Loop(&EMouseBufX, &EMouseBufY);
+		mapeditor.Draw();
+
+		break;
+
+		//エディタシーン終了処理
+	case SCENE_ID_FIN_EDITOR:
+		mapeditor.Exit();
 
 		break;
 	}

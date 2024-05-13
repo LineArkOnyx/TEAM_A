@@ -21,6 +21,9 @@ void Play::Step()
 {
 	character.Step();
 	anime.Step();
+	if (Input::Key::Keep(KEY_INPUT_LSHIFT) && Input::Key::Push(KEY_INPUT_M)) {
+		g_CurrentSceneID = SCENE_ID_INIT_EDITOR;
+	}
 }
 
 //•`‰æˆ—

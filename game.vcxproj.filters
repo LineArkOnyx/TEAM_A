@@ -49,6 +49,9 @@
     <Filter Include="ソース ファイル\Effect">
       <UniqueIdentifier>{b8da6f93-8c51-40e7-9a1a-bdf297a2b72c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\MapEditor">
+      <UniqueIdentifier>{a07604fd-c492-4b04-8ff5-53884f6c686c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FrameRate\FrameRate.cpp">
@@ -93,6 +96,9 @@
     <ClCompile Include="src\Effect\Effect.cpp">
       <Filter>ソース ファイル\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="src\Map\MapEditor.cpp">
+      <Filter>ソース ファイル\MapEditor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FrameRate\FrameRate.h">
@@ -133,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="src\Effect\Effect.h">
       <Filter>ソース ファイル\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Map\MapEditor.h">
+      <Filter>ソース ファイル\MapEditor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -26,6 +26,7 @@
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Map\Map.cpp" />
+    <ClCompile Include="src\Map\MapEditor.cpp" />
     <ClCompile Include="src\MathPlus\MathPlus.cpp" />
     <ClCompile Include="src\PlayScene\PlayScene.cpp" />
     <ClCompile Include="src\Scene\Play\Play.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="src\FrameRate\FrameRate.h" />
     <ClInclude Include="src\Input\Input.h" />
     <ClInclude Include="src\Map\Map.h" />
+    <ClInclude Include="src\Map\MapEditor.h" />
     <ClInclude Include="src\MathPlus\MathPlus.h" />
     <ClInclude Include="src\PlayScene\PlayScene.h" />
     <ClInclude Include="src\Scene\Play\Play.h" />
