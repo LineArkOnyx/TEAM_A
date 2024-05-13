@@ -11,15 +11,15 @@
 #define SKY		"data/Title/DaytimeSky.png"			// 空
 #define SKY2	"data/Title/NightSky.png"			// 青空
 
-#define SOUND	"data/Title/MusMus-PKPK-001.mp3"	// BGM (フリーBGM・音楽素材MusMus https://musmus.main.jp)
+//#define SOUND	"data/Title/MusMus-PKPK-001.mp3"	// BGM (フリーBGM・音楽素材MusMus https://musmus.main.jp)
 
 #define GRAVITY	0.05f								// 重力の値
 
 //初期化
 void Title::Init()
 {
-	m_sound = LoadSoundMem(SOUND);
-	PlaySoundMem(m_sound, DX_PLAYTYPE_LOOP, true);
+	//m_sound = LoadSoundMem(SOUND);
+	//PlaySoundMem(m_sound, DX_PLAYTYPE_LOOP, true);
 
 	m_backrand = GetRand(1);	// 乱数0～1
 	m_effectrand = GetRand(SCREEN_SIZE_X - 10);
@@ -191,7 +191,7 @@ void Title::Fin()
 	DeleteGraph(m_hndl[1]);
 	DeleteGraph(m_hndl[2]);
 
-	DeleteSoundMem(m_sound);
+	//DeleteSoundMem(m_sound);
 
 	//次のシーンに移動
 	g_CurrentSceneID = SCENE_ID_INIT_PLAY;
