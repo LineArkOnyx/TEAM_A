@@ -8,9 +8,10 @@ int Sound::Se::handle[SE_MAX_NUM];
 char bgmSoundPath[BGM_MAX_NUM][255] =
 {
 	//音楽
-	"data/sound/bgm/titleBGM.mp3",	//タイトル
+	"data/BGM/titleBGM.wav",	//タイトル
 	"data/BGM/playBGM.wav",	//プレイ
-	"data/sound/bgm/resultBGM.mp3",	//リザルト
+	"data/BGM/resultBGM.wav",	//リザルト
+	"data/BGM/gameoverBGM.wav",	//ゲームオーバー
 
 	//環境音
 	"data/sound/bgm/fish.mp3",		//魚が暴れる
@@ -51,19 +52,32 @@ char seSoundPath[SE_MAX_NUM][255] =
 	"data/SE/足音(単体).wav",		    //足音(単体)
 	"data/SE/踏みつけ音.wav",		    //踏みつけ音
 	"data/SE/ブロックを壊す音.wav",		 //ブロックを壊す音
+	"data/SE/ジャンプ.wav",		         //ジャンプ
+	"data/SE/コンベア.wav",		         //コンベア
 	
 };
 
 //音量
 int soundVolume_se[SE_MAX_NUM] =
 {
-	80,			//システム
-	70,			//釣り竿
-	75,			//ルアー着水
-	70,			//魚がルアーに反応
-	90,			//魚を釣った
-	100,			//時間制限
-	70,			//ゲーム終了
+	80,			//コイン
+	70,			//ダイビング
+	75,			//ドアを開ける
+	70,			//ドアを閉める
+	70,			//とげ(単体)に刺さる
+	100,		//とげ(複数)に刺さる
+	70,			//はしごを上る
+	70,			//ばね
+	70,			//パワーアップ音
+	70,			//レバーを倒す
+	70,			//泳ぐ音
+	70,			//芝生の上を走る
+	60,			//食べ物をパクッ
+	70,			//足音(単体)
+	70,			//踏みつけ音
+	70,			//ブロックを壊す音
+	60,			//ジャンプ
+	60,			//コンベア
 };
 
 //サウンドまとめ初期化
@@ -71,6 +85,13 @@ void Sound::Init()
 {
 	Bgm::Init();
 	Se::Init();
+}
+
+//サウンドまとめ破棄
+void Sound::Fin()
+{
+	Bgm::Fin();
+	Se::Fin();
 }
 
 //BGMの初期化
@@ -88,7 +109,21 @@ void Sound::Bgm::Init()
 void Sound::Bgm::Play(int type)
 {
 	//BGMの再生
-	PlaySoundMem(handle[type], DX_PLAYTYPE_LOOP, true);
+	if (CheckSoundMem(handle[type]) == 0)
+	{
+		PlaySoundMem(handle[type], DX_PLAYTYPE_LOOP, true);
+	}
+}
+////BGMが流れているか
+bool Sound::Bgm::Check(int type)//123
+{
+	if (CheckSoundMem(handle[type]) == 1)
+	{
+		return false;   //鳴っていたら
+	}
+	else {
+		return true;   //鳴っていなかったら
+	}
 }
 //BGMの音量調節：種類,音量(ﾊﾟｰｾﾝﾃｰｼﾞ)
 void Sound::Bgm::SetVolume(int type, int volume)
@@ -101,6 +136,13 @@ void Sound::Bgm::StopSound(int type)
 {
 	//BGMの停止
 	StopSoundMem(handle[type]);
+}
+
+void Sound::Bgm::Fin()
+{
+	//BGM破棄
+	for (int i = 0; i < BGM_MAX_NUM; i++)
+		DeleteSoundMem(handle[i]);
 }
 
 //SEの初期化
@@ -121,9 +163,33 @@ void Sound::Se::Play(int type)
 	//効果音の再生
 	PlaySoundMem(handle[type], DX_PLAYTYPE_BACK, true);
 }
+//SEが流れているか
+bool Sound::Se::Check(int type)
+{
+	if (CheckSoundMem(handle[type]) == 1)
+	{
+		return false;   //鳴っていたら
+	}
+	else {
+		return true;   //鳴っていなかったら
+	}
+}
+//SEの停止
+void Sound::Se::Stop(int type)
+{
+	//効果音を止める処理
+	StopSoundMem(handle[type]);
+}
 //SEの音量調節：種類,音量(ﾊﾟｰｾﾝﾃｰｼﾞ)
 void Sound::Se::SetVolume(int type, int volume)
 {
 	//音量の設定（0～255）（↓はvolume％の音量で出力）
 	ChangeVolumeSoundMem(255 * volume / 100, handle[type]);
+}
+
+void Sound::Se::Fin()
+{
+	//SE破棄
+	for (int i = 0; i < SE_MAX_NUM; i++)
+		DeleteSoundMem(handle[i]);
 }

@@ -40,5 +40,5 @@ void Play::Fin()
 {
 
 	//Ÿ‚ÌƒV[ƒ“‚ÉˆÚ“®
-	g_CurrentSceneID = SCENE_ID_INIT_RESULT;
+	g_CurrentSceneID = SCENE_ID_INIT_GAMEOVER;
 }

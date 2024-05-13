@@ -29,6 +29,7 @@
     <ClCompile Include="src\Map\MapEditor.cpp" />
     <ClCompile Include="src\MathPlus\MathPlus.cpp" />
     <ClCompile Include="src\PlayScene\PlayScene.cpp" />
+    <ClCompile Include="src\Scene\Gameover\gameover.cpp" />
     <ClCompile Include="src\Scene\Play\Play.cpp" />
     <ClCompile Include="src\Scene\Result\Result.cpp" />
     <ClCompile Include="src\Scene\Scene.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="src\Map\MapEditor.h" />
     <ClInclude Include="src\MathPlus\MathPlus.h" />
     <ClInclude Include="src\PlayScene\PlayScene.h" />
+    <ClInclude Include="src\Scene\Gameover\gameover.h" />
     <ClInclude Include="src\Scene\Play\Play.h" />
     <ClInclude Include="src\Scene\Result\Result.h" />
     <ClInclude Include="src\Scene\Scene.h" />

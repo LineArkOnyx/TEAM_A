@@ -4,6 +4,7 @@
 #include"../Map/Map.h"
 #include"../MathPlus/MathPlus.h"
 #include"../Scene/Scene.h"
+#include"../Sound/Sound.h"
 const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
 const int SQUARE_Y_MAX = 27;	//どこまで当たり判定を取るか
@@ -124,6 +125,7 @@ void PlaySceen::Character_Hit_Map()
 						{
 							MapChipData[y][x] = -1;
 							Effect::Play(EFFECT_TYPE_BREAK, Bx - character.GetScreenX(), By - character.GetScreenY());
+							Sound::Se::Play(SE_BLOAK_DESTRUCTION);
 						}
 					}
 					// 右方向の修正
@@ -146,7 +148,9 @@ void PlaySceen::Character_Hit_Map()
 						{
 							character.UnderConveyorPower();
 						}
-
+						else {
+							Sound::Se::Stop(SE_KYATAPIRA);   //SEの停止
+						}
 						
 					}
 				}
@@ -200,6 +204,8 @@ void PlaySceen::Character_Hit_Map()
 				//ゴールの当たり判定
 				if (MapChipData[y][x] == 40 || MapChipData[y][x] == 50)
 				{
+					Sound::Bgm::StopSound(BGM_PLAY);
+					Sound::Fin();
 					g_CurrentSceneID = SCENE_ID_INIT_RESULT;
 				}
 				//トラップ処理
@@ -225,6 +231,8 @@ void PlaySceen::Character_Hit_Map()
 					{
 						character.SetHp(2);
 						Effect::Play(EFFECT_TYPE_ITEM, Bx- character.GetScreenX(), By - character.GetScreenY());
+						Sound::Se::Play(SE_EAT);
+						Sound::Se::Play(SE_POWER_UP);
 					}
 					
 				}
