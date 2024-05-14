@@ -16,7 +16,7 @@ class Character
 {
 private:
 	int  h, w, handle,Hp;
-	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY;
+	float x, y,Next_x,Next_y, Gravity_Speed, ScreenX, ScreenY, HitSquareX, HitSquareY, ScreenNextX;
 	bool JunpFrag
 		, DebugFrag
 		, ladderActiv			//’òŽq‚ðŽg‚Á‚Ä‚¢‚é‚©‚©‚Ç‚¤‚©”»’f‚·‚é

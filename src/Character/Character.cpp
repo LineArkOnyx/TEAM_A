@@ -26,6 +26,7 @@ void Character::Init()		//初期化
 	Gravity_Speed = 0.0f;//重力
 	ScreenX = x - SCREEN_SIZE_X / 2;
 	ScreenY = 239;						//Y座標のスクリーンY座標
+	ScreenNextX = ScreenX;
 	handle = LoadGraph(CHARACTER_PATH);		//ロード
 	JunpFrag = false;
 	DebugFrag = false;
@@ -293,11 +294,11 @@ void Character::Step()		//ここにまとめる
 }
 void Character::StepScreen()
 {
-	/*if (ScreenX >= 0&& ScreenX<=2000)*/
+	ScreenNextX = x - SCREEN_SIZE_X / 2;
+	if (ScreenNextX>0&& ScreenNextX < 2540)
 	{
-		ScreenX = x - SCREEN_SIZE_X / 2;
+		ScreenX = ScreenNextX;
 	}
-	
 	ScreenY = 239;						//Y座標のスクリーンY座標
 }
 void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
