@@ -39,7 +39,7 @@ void MapData::Draw()
 				if (m_FileReadMapData[y][x] != MAPCHIP_NONE) {
 					DrawGraph(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, imgHundle[mapchipType], true);
 					
-					DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(127, 127, 0), false);
+					//DrawBox(x * MAP_SIZE + ScreenPosX, y * MAP_SIZE + ScreenPosY, x * MAP_SIZE + MAP_SIZE + ScreenPosX, y * MAP_SIZE + MAP_SIZE + ScreenPosY, GetColor(127, 127, 0), false);
 				}
 			}
 			else {

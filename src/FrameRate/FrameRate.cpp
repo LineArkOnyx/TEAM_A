@@ -80,5 +80,5 @@ void DrawFPS()
 {
 	SetFontSize(20);
 	unsigned int color = GetColor(255, 30, 30);
-	DrawFormatString(SCREEN_FPS_SIZE_X -130, SCREEN_FPS_SIZE_Y -20, color, "FPS[%.2f]", frameRateInfo.fps);
+	//DrawFormatString(SCREEN_FPS_SIZE_X -130, SCREEN_FPS_SIZE_Y -20, color, "FPS[%.2f]", frameRateInfo.fps);
 }

@@ -134,11 +134,11 @@ void Character::DebugSwaitch()
 	}
 	if (DebugFrag == false)
 	{
-		DrawFormatString(0, 105, GetColor(255, 255, 255), "プレイモード");
+		//DrawFormatString(0, 105, GetColor(255, 255, 255), "プレイモード");
 	}
 	if (DebugFrag == true)
 	{
-		DrawFormatString(0, 105, GetColor(255, 255, 255), "デバッグモード");
+		//DrawFormatString(0, 105, GetColor(255, 255, 255), "デバッグモード");
 	}
 }
 void Character::Junp()
@@ -224,16 +224,16 @@ void Character::Gravity()	//重力処理
 void Character::Draw()		//描画
 {
 	//DrawBox(x - ScreenX, y - ScreenY, x + w - ScreenX, y + h - ScreenY, GetColor(0, 0, 255),false);
-	DrawFormatString(0, 0, GetColor(255, 255, 255), "Next_x = %0.2f", Next_x);
-	DrawFormatString(0, 15, GetColor(255, 255, 255), "Next_y = %0.2f", Next_y);
-	DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
-	DrawFormatString(0, 75, GetColor(255, 255, 255), "JunpFrag = %d", JunpFrag); 
-	DrawFormatString(0, 90, GetColor(255, 255, 255), "DebugFrag = %d", DebugFrag);
-	DrawFormatString(0, 120, GetColor(255, 255, 255), "ScreenX = %0.2f", ScreenX);
-	DrawFormatString(0, 135, GetColor(255, 255, 255), "ScreenY = %0.2f", ScreenY);
-	DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv); 
-	DrawFormatString(0, 165, GetColor(255, 255, 255), "UpJunpTrapFrag = %d", UpJunpTrapFrag);
-	DrawFormatString(0, 180, GetColor(255, 255, 255), "Hp = %d", Hp);
+	//DrawFormatString(0, 0, GetColor(255, 255, 255), "Next_x = %0.2f", Next_x);
+	//DrawFormatString(0, 15, GetColor(255, 255, 255), "Next_y = %0.2f", Next_y);
+	//DrawFormatString(0, 30, GetColor(255, 255, 255), "Gravity_Speed = %0.2f", Gravity_Speed);
+	//DrawFormatString(0, 75, GetColor(255, 255, 255), "JunpFrag = %d", JunpFrag); 
+	//DrawFormatString(0, 90, GetColor(255, 255, 255), "DebugFrag = %d", DebugFrag);
+	//DrawFormatString(0, 120, GetColor(255, 255, 255), "ScreenX = %0.2f", ScreenX);
+	//DrawFormatString(0, 135, GetColor(255, 255, 255), "ScreenY = %0.2f", ScreenY);
+	//DrawFormatString(0, 150, GetColor(255, 255, 255), "ladderActiv = %d", ladderActiv); 
+	//DrawFormatString(0, 165, GetColor(255, 255, 255), "UpJunpTrapFrag = %d", UpJunpTrapFrag);
+	//DrawFormatString(0, 180, GetColor(255, 255, 255), "Hp = %d", Hp);
 	//DrawRotaGraph(x + w / 2 - ScreenX, y + h / 2 - ScreenY, 1.0, 0.0, handle, true);		//キャラクター描画
 
 	//無敵時間じゃなければ通常描画
@@ -279,9 +279,9 @@ void Character::StepHitSquare()					//当たり判定を調節する位置
 }
 void Character::Step()		//ここにまとめる
 {
-	DebugSwaitch();
+	/*DebugSwaitch();*/
 	Move();
-	DebugMove();
+	/*DebugMove();*/
 	Gravity();
 	/*Junp();*/
 

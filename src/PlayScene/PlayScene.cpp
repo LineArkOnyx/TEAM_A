@@ -53,8 +53,8 @@ void PlaySceen::Character_Hit_Map()
 			if (MapChipData[y][x] == -1|| MapChipData[y][x] == 40 || MapChipData[y][x] == 41 || MapChipData[y][x] == 46 ||  MapChipData[y][x] == 50 || MapChipData[y][x] == 43 || MapChipData[y][x] == 44 || MapChipData[y][x] == 45 || MapChipData[y][x] == 51 || MapChipData[y][x] == 52 || MapChipData[y][x] == 53 || MapChipData[y][x] == 54 || MapChipData[y][x] == 55 || MapChipData[y][x] == 56 || MapChipData[y][x] == 57 || MapChipData[y][x] == 58)
 				continue;
 			{
-				DrawBox(Bx-(int)character.GetScreenX(), By- (int)character.GetScreenY(), Bx + Bw- (int)character.GetScreenX(), By + Bh- (int)character.GetScreenY(), GetColor(255, 255, 255), false);
-				DrawBox(Ax - (int)character.GetScreenX(), Ay - (int)character.GetScreenY(), Ax + Aw - (int)character.GetScreenX(), Ay + Ah - (int)character.GetScreenY(), GetColor(255, 0, 0), false);
+				//DrawBox(Bx-(int)character.GetScreenX(), By- (int)character.GetScreenY(), Bx + Bw- (int)character.GetScreenX(), By + Bh- (int)character.GetScreenY(), GetColor(255, 255, 255), false);
+				//DrawBox(Ax - (int)character.GetScreenX(), Ay - (int)character.GetScreenY(), Ax + Aw - (int)character.GetScreenX(), Ay + Ah - (int)character.GetScreenY(), GetColor(255, 0, 0), false);
 
 				Ay = (int)character.GetPosY();
 				Ax = (int)character.GetNextPosX();
@@ -199,7 +199,7 @@ void PlaySceen::Character_Hit_Map()
 			if (MapChipData[y][x] == -1)
 				continue; 
 
-			DrawBox(Bx - (int)character.GetScreenX(), By - (int)character.GetScreenY(), Bx + Bw - (int)character.GetScreenX(), By + Bh - (int)character.GetScreenY(), GetColor(255, 0, 255), false);
+			//DrawBox(Bx - (int)character.GetScreenX(), By - (int)character.GetScreenY(), Bx + Bw - (int)character.GetScreenX(), By + Bh - (int)character.GetScreenY(), GetColor(255, 0, 255), false);
 			if (Collision::Rect(Ax, Ay, Aw, Ah, Bx, By, Bw, Bh))
 			{
 				//‚Í‚µ‚²‚Ì“–‚½‚è”»’è
