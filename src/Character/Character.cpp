@@ -289,6 +289,7 @@ void Character::Step()		//ここにまとめる
 	playSceen.Step();
 	Update();
 
+	Dead_or_Alive();
 	ChangeAnima();	//アニメの変更
 	GameOverFrg();	//ゲームオーバー判定
 }
@@ -318,6 +319,14 @@ void Character::GetMoveDirection(bool* _dirArray) 		//左右上下の当たり判定
 	// 左方向のチェック
 	if (Next_y < y) {
 		_dirArray[0] = true;
+	}
+}
+void Character::Dead_or_Alive()
+{
+	//965
+	if (y > 965)
+	{
+		Hp = 0;
 	}
 }
 void Character::UnderConveyorPower()

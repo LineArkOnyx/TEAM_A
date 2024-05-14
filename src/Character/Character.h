@@ -72,5 +72,6 @@ public:
 	void ChangeAnima();
 	void Damage(int damage = 1);
 	void GameOverFrg();	//ゲームオーバー判定
+	void Dead_or_Alive();
 };
 extern Character character;

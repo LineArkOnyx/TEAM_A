@@ -9,6 +9,8 @@ const int SQUARE_Y = 5;		//現在の位置からY軸の当たり判定の範囲を設定する
 const int SQUARE_X = 10;	//現在の位置からX軸の当たり判定の範囲を設定する
 const int SQUARE_Y_MAX = 27;	//どこまで当たり判定を取るか
 const int SQUARE_Y_LOWEST = 1;	//どこまで当たり判定を取るか
+const int SQUARE_X_MAX = 100;	//どこまで当たり判定を取るか
+const int SQUARE_X_LOWEST = 0;	//どこまで当たり判定を取るか
 PlaySceen playSceen;
 void PlaySceen::Character_Hit_Map()
 {
@@ -23,6 +25,11 @@ void PlaySceen::Character_Hit_Map()
 			continue;
 		for (int x = (int)character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
+			if(character.GetHitSquareX()> SQUARE_X_MAX)
+				continue;
+			//配列を超えたら
+			if (character.GetHitSquareX() < SQUARE_X_LOWEST)
+				continue;
 			// ★ここを考える
 			// どの方向に進んでいたかチェック
 			// ※Playerクラスに進む方向をチェックする関数を準備しています。
@@ -84,6 +91,11 @@ void PlaySceen::Character_Hit_Map()
 			continue;
 		for (int x = (int)character.GetHitSquareX() - SQUARE_X; character.GetHitSquareX() + SQUARE_X > x; x++)
 		{
+			if (character.GetHitSquareX() > SQUARE_X_MAX)
+				continue;
+			//配列を超えたら
+			if (character.GetHitSquareX() < SQUARE_X_LOWEST)
+				continue;
 			// ★ここを考える
 				// どの方向に進んでいたかチェック
 				// ※Playerクラスに進む方向をチェックする関数を準備しています。
